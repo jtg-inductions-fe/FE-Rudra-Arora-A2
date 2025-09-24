@@ -29,6 +29,7 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
+    fontWeightBold: 700,
 
     h1: {
         fontSize: typographyUtil.pxToRem(30),
@@ -39,6 +40,48 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
             fontSize: typographyUtil.pxToRem(48),
             lineHeight: typographyUtil.pxToRem(62.5),
         },
+    },
+
+    h2: {
+        fontSize: typographyUtil.pxToRem(16),
+        fontWeight: 500,
+        lineHeight: typographyUtil.pxToRem(24),
+    },
+
+    h3: {
+        fontSize: typographyUtil.pxToRem(20),
+        fontWeight: 600,
+        lineHeight: typographyUtil.pxToRem(30),
+    },
+
+    h4: {
+        fontSize: typographyUtil.pxToRem(16),
+        lineHeight: typographyUtil.pxToRem(24),
+        fontWeight: 600,
+    },
+
+    body1: {
+        fontSize: typographyUtil.pxToRem(16),
+        fontWeight: 400,
+        lineHeight: typographyUtil.pxToRem(24),
+    },
+
+    button: {
+        fontWeight: 600,
+        fontSize: typographyUtil.pxToRem(14),
+        lineHeight: typographyUtil.pxToRem(21),
+    },
+
+    subtitle1: {
+        fontWeight: 600,
+        fontSize: typographyUtil.pxToRem(12),
+        lineHeight: typographyUtil.pxToRem(18),
+    },
+
+    subtitle2: {
+        fontWeight: 400,
+        fontSize: typographyUtil.pxToRem(12),
+        lineHeight: typographyUtil.pxToRem(18),
     },
 });
 
