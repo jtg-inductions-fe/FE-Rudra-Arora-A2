@@ -1,0 +1,38 @@
+[
+    {
+        "customerName": "Neil Sims",
+        "customerImage": "/images/customer1.webp",
+        "customerAmount": 367,
+        "customerEmail": "neil@example.com"
+    },
+    {
+        "customerName": "Bonnie Green",
+        "customerImage": "/images/customer2.png",
+        "customerAmount": 67,
+        "customerEmail": "bonnie@example.com"
+    },
+    {
+        "customerName": "Michael Gough",
+        "customerImage": "/images/customer3.png",
+        "customerAmount": 3467,
+        "customerEmail": "michael@example.com"
+    },
+    {
+        "customerName": "Thomas Lean",
+        "customerImage": "/images/customer4.png",
+        "customerAmount": 2367,
+        "customerEmail": "thomas@example.com"
+    },
+    {
+        "customerName": "Lana Byrd",
+        "customerImage": "/images/customer5.png",
+        "customerAmount": 367,
+        "customerEmail": "lana@example.com"
+    },
+    {
+        "customerName": "Karen Nelson",
+        "customerImage": "/images/customer6.png",
+        "customerAmount": 1367,
+        "customerEmail": "karen@example.com"
+    }
+]
