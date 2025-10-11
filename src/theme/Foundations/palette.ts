@@ -31,4 +31,5 @@ export const palette: PaletteOptions = {
         hover: '#E5E7EB',
         active: '#B7B7B7',
     },
+    divider: '#E5E7EB',
 };

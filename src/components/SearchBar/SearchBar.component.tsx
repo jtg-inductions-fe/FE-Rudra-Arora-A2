@@ -1,21 +1,31 @@
+import { useEffect, useMemo } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/Search';
-import { InputAdornment } from '@mui/material';
+import { debounce, InputAdornment } from '@mui/material';
 import TextField from '@mui/material/TextField';
-
-import { ROUTES } from '@routes';
 
 import { StyledSearchBar } from './SearchBar.style';
 import type { SearchBarProps } from './SearchBar.types';
 
-export const SearchBar = <T,>({ Data, optionKey }: SearchBarProps<T>) => {
+export const SearchBar = <T,>({
+    Data,
+    optionKey,
+    mainRoute,
+}: SearchBarProps<T>) => {
     const navigate = useNavigate();
 
-    const handleSearchChange = (productName: string) => {
-        const value = productName.split(' ').join('-').toLowerCase();
-        void navigate(`${ROUTES.PRODUCTS}/${value}`);
+    const handleSearchChange = (label: string) => {
+        const value = label.split(' ').join('-').toLowerCase();
+        void navigate(`${mainRoute}/${value}`);
     };
+
+    const debouncedSearch = useMemo(() => debounce(() => {}, 500), []);
+
+    useEffect(() => () => {
+        debouncedSearch.clear();
+    });
 
     return (
         <StyledSearchBar
@@ -26,10 +36,10 @@ export const SearchBar = <T,>({ Data, optionKey }: SearchBarProps<T>) => {
                     handleSearchChange(value);
                 }
             }}
+            onInputChange={() => debouncedSearch()}
             options={Data.map((item) => String(item[optionKey]))}
             renderInput={(params) => (
                 <TextField
-                    sx={{ color: 'red' }}
                     {...params}
                     placeholder="Search"
                     slotProps={{

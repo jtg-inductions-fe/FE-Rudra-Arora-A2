@@ -2,13 +2,13 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { styled } from '@mui/material/styles';
 
 export const StyledSearchBar = styled(Autocomplete)(({ theme }) => ({
-    width: '402px',
+    width: theme.typography.pxToRem(402),
     '& .MuiOutlinedInput-root': {
-        border: '1px solid palette.secondary.main',
-        height: '45px',
-        borderRadius: '16px',
+        border: `${theme.typography.pxToRem(1)} solid ${theme.palette.divider}`,
+        height: theme.typography.pxToRem(45),
+        borderRadius: theme.typography.pxToRem(16),
         backgroundColor: theme.palette.background.default,
-        boxShadow: '0px 1px 4px #B7B7B7',
+        boxShadow: `0 ${theme.typography.pxToRem(3)} ${theme.typography.pxToRem(4)} ${theme.typography.pxToRem(1)} ${theme.palette.divider}`,
         paddingRight: theme.spacing(1),
     },
     '& input': {

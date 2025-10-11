@@ -1,4 +1,4 @@
 export type ButtonProps = {
-    buttonText: string;
-    buttonRoute: string;
+    Text: string;
+    onClick: () => void;
 };

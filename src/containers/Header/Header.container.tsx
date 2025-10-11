@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 
-import { SearchBar } from 'components/SearchBar';
 import { useNavigate } from 'react-router-dom';
 
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Avatar, Box, IconButton, Toolbar, useTheme } from '@mui/material';
+import { Avatar, Divider, IconButton, Toolbar, useTheme } from '@mui/material';
 
 import logo from '@assets/images/Logo.webp';
+import { SearchBar } from '@components';
 import { CustomModal } from '@components';
-import { ProductsData, userData } from '@data';
+import { ProductsData, UserData } from '@data';
+import { ROUTES } from '@routes';
 
-import { StyledAppBar, StyledBox, StyledImage } from './Header.style';
-
-import profileImage from '/images/profile-picture.webp';
+import {
+    HeaderBox,
+    StyledAppBar,
+    StyledImage,
+    ToolbarBox,
+} from './Header.style';
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -31,7 +35,7 @@ export const Header = () => {
 
     return (
         <>
-            <StyledAppBar>
+            <StyledAppBar sx={{ zIndex: theme.zIndex.drawer + 1 }}>
                 <Toolbar sx={{ justifyContent: 'space-between' }}>
                     <IconButton
                         color="inherit"
@@ -49,7 +53,7 @@ export const Header = () => {
                         />
                     </IconButton>
 
-                    <StyledBox>
+                    <HeaderBox>
                         <IconButton
                             onClick={() => void navigate('/')}
                             sx={{ p: 0 }}
@@ -59,24 +63,14 @@ export const Header = () => {
                         <SearchBar
                             Data={ProductsData}
                             optionKey="productName"
+                            mainRoute={ROUTES.PRODUCTS}
                         />
-                    </StyledBox>
+                    </HeaderBox>
 
-                    <Box
-                        sx={{
-                            mt: 2,
-                            mr: 2,
-                            display: 'flex',
-                            gap: theme.typography.pxToRem(8),
-                            height: theme.typography.pxToRem(32),
-                            [theme.breakpoints.up('md')]: {
-                                gap: theme.typography.pxToRem(12),
-                            },
-                        }}
-                    >
+                    <ToolbarBox>
                         <IconButton
                             onClick={() => {
-                                void navigate('/notifications');
+                                void navigate(ROUTES.NOTIFICATIONS);
                             }}
                             sx={{
                                 color: theme.palette.common.black,
@@ -90,26 +84,29 @@ export const Header = () => {
                         </IconButton>
 
                         <IconButton
-                            onClick={(e) => void handleModalOpen(e)}
+                            onClick={(event) => void handleModalOpen(event)}
                             sx={{ p: 0 }}
                         >
                             <Avatar
-                                src={profileImage}
+                                src={UserData[0].userImage}
                                 alt="profile image"
-                                sx={{ height: '100%', width: '32px' }}
+                                sx={{
+                                    height: '100%',
+                                    width: theme.typography.pxToRem(32),
+                                }}
                             />
                         </IconButton>
-                    </Box>
+                    </ToolbarBox>
                 </Toolbar>
+                <Divider />
             </StyledAppBar>
             <CustomModal
                 anchorEl={anchorEl}
                 handleModalClose={handleModalClose}
-                userName={userData[0].userName}
-                userEmail={userData[0].userEmail}
-                userImage={userData[0].userImage}
-                buttonText="Manage Profile"
-                buttonRoute="/manage-profile"
+                userName={UserData[0].userName}
+                userEmail={UserData[0].userEmail}
+                userImage={UserData[0].userImage}
+                Text="Manage Profile"
             />
         </>
     );

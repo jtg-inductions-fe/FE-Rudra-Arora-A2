@@ -10,8 +10,7 @@
             "@data": ["data/index"],
             "@layout": ["layout/index"],
             "@routes": ["routes/index"],
-            "@hooks": ["hooks/index"],
-            "@assets": ["assets/*"]
+            "@hooks": ["hooks/index"]
         }
     }
 }
