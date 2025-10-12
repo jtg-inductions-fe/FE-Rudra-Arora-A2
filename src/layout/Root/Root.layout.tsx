@@ -1,16 +1,43 @@
+import { useState } from 'react';
+
 import { Outlet } from 'react-router-dom';
 
 import { Box } from '@mui/material';
 
-import { Header } from '@containers';
+import { Header, Sidebar } from '@containers';
 
-export const Root = () => (
-    <Box display="flex" sx={{ flexWrap: 'wrap' }}>
-        <Header />
-        <Box display="flex" width="100%">
-            <Box component="main" sx={{ flexGrow: 1, overflow: 'auto' }}>
-                <Outlet />
+export const Root = () => {
+    const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+    const [isSidebarClosing, setIsSidebarClosing] = useState(false);
+
+    const handleDrawerClose = () => {
+        setIsSidebarClosing(true);
+        setMobileSidebarOpen(false);
+    };
+
+    const handleDrawerTransitionEnd = () => {
+        setIsSidebarClosing(false);
+    };
+
+    const handleDrawerToggle = () => {
+        if (!isSidebarClosing) {
+            setMobileSidebarOpen(!mobileSidebarOpen);
+        }
+    };
+
+    return (
+        <Box display="flex" sx={{ flexWrap: 'wrap' }}>
+            <Header handleDrawerToggle={handleDrawerToggle} />
+            <Box display="flex" width="100%">
+                <Sidebar
+                    handleDrawerClose={handleDrawerClose}
+                    handleDrawerTransitionEnd={handleDrawerTransitionEnd}
+                    mobileSidebarOpen={mobileSidebarOpen}
+                />
+                <Box component="main" sx={{ flexGrow: 1, overflow: 'auto' }}>
+                    <Outlet />
+                </Box>
             </Box>
         </Box>
-    </Box>
-);
+    );
+};

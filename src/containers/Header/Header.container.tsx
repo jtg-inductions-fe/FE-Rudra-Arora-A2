@@ -24,8 +24,9 @@ import {
     StyledIconButton,
     ToolbarBox,
 } from './Header.style';
+import { HeaderProps } from './Header.types';
 
-export const Header = () => {
+export const Header = ({ handleDrawerToggle }: HeaderProps) => {
     const navigate = useNavigate();
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
