@@ -3,6 +3,7 @@ export const ROUTES = {
 
     NOTIFICATIONS: '/notifications',
     MESSAGES: '/messages',
+    OVERVIEW: '/overview',
     DOCS: '/docs',
     COMPONENTS: '/components',
     HELP: '/help',

@@ -6,14 +6,10 @@ export type SidebarProps = {
     mobileSidebarOpen: boolean;
 };
 
-type SidebarMenuType = {
+export type SidebarMenuType = {
     title: string;
-    route: string;
-};
-
-export type SidebarType = {
-    title: string;
-    icon: React.ComponentType<SvgIconProps>;
-    route: string;
+    icon?: React.ComponentType<SvgIconProps>;
+    route?: string;
     children?: SidebarMenuType[];
+    count?: number;
 };
