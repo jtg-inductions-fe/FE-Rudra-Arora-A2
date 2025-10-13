@@ -1,11 +1,11 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 
 import { Menu } from '@components';
 
+import { sidebarConfig } from './Sidebar.config';
 import { SidebarProps } from './Sidebar.types';
 
 const drawerWidth = 302;
@@ -21,8 +21,7 @@ export const Sidebar = ({
     const drawer = (
         <div>
             <Toolbar />
-            <Menu />
-            <Divider />
+            <Menu Config={sidebarConfig} />
         </div>
     );
 
