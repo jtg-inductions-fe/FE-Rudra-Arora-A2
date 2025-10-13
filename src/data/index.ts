@@ -6,4 +6,4 @@ export { TransactionData } from './TransactionData';
 export type { CustomerType } from './CustomerData';
 export type { ProductsType } from './ProductsData';
 export type { TransactionType } from './TransactionData';
-export type { UserDataType } from './UserData';
+export type { UserType } from './UserData';

@@ -15,6 +15,7 @@ import { ROUTES } from '@routes';
 import {
     HeaderBox,
     StyledAppBar,
+    StyledIconButton,
     StyledImage,
     ToolbarBox,
 } from './Header.style';
@@ -33,25 +34,20 @@ export const Header = () => {
         setAnchorEl(null);
     };
 
+    const handleSearchChange = (label: string) => {
+        const value = label.split(' ').join('-').toLowerCase();
+        void navigate(`${ROUTES.PRODUCTS}/${value}`);
+    };
+
     return (
         <>
             <StyledAppBar sx={{ zIndex: theme.zIndex.drawer + 1 }}>
                 <Toolbar sx={{ justifyContent: 'space-between' }}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        sx={{
-                            ml: 0,
-                            mt: 1,
-                            display: { md: 'none' },
-                            color: theme.palette.text.primary,
-                        }}
-                    >
+                    <StyledIconButton aria-label="open drawer" edge="start">
                         <MenuOpenIcon
                             sx={{ fontSize: theme.typography.pxToRem(32) }}
                         />
-                    </IconButton>
+                    </StyledIconButton>
 
                     <HeaderBox>
                         <IconButton
@@ -63,7 +59,7 @@ export const Header = () => {
                         <SearchBar
                             Data={ProductsData}
                             optionKey="productName"
-                            mainRoute={ROUTES.PRODUCTS}
+                            handleSearchChange={handleSearchChange}
                         />
                     </HeaderBox>
 
@@ -88,7 +84,7 @@ export const Header = () => {
                             sx={{ p: 0 }}
                         >
                             <Avatar
-                                src={UserData[0].userImage}
+                                src={UserData.user1.userImage}
                                 alt="profile image"
                                 sx={{
                                     height: '100%',
@@ -103,10 +99,10 @@ export const Header = () => {
             <CustomModal
                 anchorEl={anchorEl}
                 handleModalClose={handleModalClose}
-                userName={UserData[0].userName}
-                userEmail={UserData[0].userEmail}
-                userImage={UserData[0].userImage}
-                Text="Manage Profile"
+                userName={UserData.user1.userName}
+                userEmail={UserData.user1.userEmail}
+                userImage={UserData.user1.userImage}
+                text="Manage Profile"
             />
         </>
     );

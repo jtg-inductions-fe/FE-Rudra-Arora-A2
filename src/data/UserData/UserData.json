@@ -1,7 +1,7 @@
-[
-    {
+{
+    "user1": {
         "userImage": "/images/profile-picture.webp",
         "userName": "Rudra Arora",
         "userEmail": "rudra.arora@joshtechnologygroup.com"
     }
-]
+}

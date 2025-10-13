@@ -1,4 +1,5 @@
 export type ButtonProps = {
-    Text: string;
+    text: string;
     onClick: () => void;
+    component: string;
 };

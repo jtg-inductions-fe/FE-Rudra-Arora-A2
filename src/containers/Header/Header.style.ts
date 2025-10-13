@@ -1,4 +1,4 @@
-import { AppBar, Box, styled } from '@mui/material';
+import { AppBar, Box, IconButton, styled } from '@mui/material';
 
 export const StyledAppBar = styled(AppBar)(({ theme }) => ({
     width: '100%',
@@ -15,18 +15,30 @@ export const StyledImage = styled('img')(({ theme }) => ({
 export const HeaderBox = styled(Box)(({ theme }) => ({
     [theme.breakpoints.up('xs')]: { display: 'none' },
     [theme.breakpoints.up('md')]: { display: 'flex' },
-    gap: theme.typography.pxToRem(32),
-    marginLeft: theme.typography.pxToRem(8),
-    marginTop: theme.typography.pxToRem(5),
+    gap: theme.spacing(8),
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(1),
 }));
 
 export const ToolbarBox = styled(Box)(({ theme }) => ({
     mt: 2,
     mr: 2,
     display: 'flex',
-    gap: theme.typography.pxToRem(8),
-    height: theme.typography.pxToRem(32),
+    gap: theme.spacing(2),
+    height: theme.spacing(8),
     [theme.breakpoints.up('md')]: {
-        gap: theme.typography.pxToRem(12),
+        gap: theme.spacing(3),
     },
 }));
+
+export const StyledIconButton = styled(IconButton)(
+    ({ theme: { palette, breakpoints } }) => ({
+        ml: 0,
+        mt: 1,
+        color: palette.text.primary,
+
+        [breakpoints.up('md')]: {
+            display: 'none',
+        },
+    }),
+);

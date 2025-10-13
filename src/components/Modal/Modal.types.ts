@@ -4,5 +4,5 @@ export type ModalProps = {
     userName: string;
     userEmail: string;
     userImage: string;
-    Text: string;
+    text: string;
 };
