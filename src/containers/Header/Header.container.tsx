@@ -23,6 +23,7 @@ import {
 export const Header = () => {
     const navigate = useNavigate();
     const theme = useTheme();
+    const searchItems = ProductsData.map((item) => item.productName);
 
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
@@ -57,8 +58,7 @@ export const Header = () => {
                             <StyledImage src={logo} alt="main logo" />
                         </IconButton>
                         <SearchBar
-                            Data={ProductsData}
-                            optionKey="productName"
+                            searchItems={searchItems}
                             handleSearchChange={handleSearchChange}
                         />
                     </HeaderBox>

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 
 import { ROUTES } from '@routes';
 
+import { StyledPaper } from './Modal.styles';
 import type { ModalProps } from './Modal.types';
 
 export const CustomModal = ({
@@ -34,18 +35,7 @@ export const CustomModal = ({
             }}
             slotProps={{
                 paper: {
-                    sx: {
-                        borderRadius: theme.typography.pxToRem(16),
-                        width: theme.typography.pxToRem(280),
-
-                        [theme.breakpoints.up('md')]: {
-                            width: theme.typography.pxToRem(320),
-                        },
-
-                        [theme.breakpoints.up('lg')]: {
-                            width: theme.typography.pxToRem(400),
-                        },
-                    },
+                    component: StyledPaper,
                 },
             }}
         >

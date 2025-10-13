@@ -1,5 +1,4 @@
-export type SearchBarProps<T> = {
-    Data: T[];
-    optionKey: keyof T;
+export type SearchBarProps = {
+    searchItems: string[];
     handleSearchChange: (label: string) => void;
 };
