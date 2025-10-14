@@ -16,7 +16,6 @@ import {
     HeaderBox,
     StyledAppBar,
     StyledIconButton,
-    StyledImage,
     ToolbarBox,
 } from './Header.style';
 
@@ -55,7 +54,7 @@ export const Header = () => {
                             onClick={() => void navigate('/')}
                             sx={{ p: 0 }}
                         >
-                            <StyledImage src={logo} alt="main logo" />
+                            <Avatar src={logo} alt="main logo" />
                         </IconButton>
                         <SearchBar
                             searchItems={searchItems}
@@ -103,6 +102,8 @@ export const Header = () => {
                 userEmail={UserData.user1.userEmail}
                 userImage={UserData.user1.userImage}
                 text="Manage Profile"
+                onClick={() => void navigate(ROUTES.MANAGE_PROFILE)}
+                component="a"
             />
         </>
     );

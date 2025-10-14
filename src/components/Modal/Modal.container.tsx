@@ -1,11 +1,14 @@
 import { ReusableButton } from 'components/Button';
-import { useNavigate } from 'react-router-dom';
 
 import CloseIcon from '@mui/icons-material/Close';
-import { Avatar, Box, IconButton, Popover, useTheme } from '@mui/material';
-import Typography from '@mui/material/Typography';
-
-import { ROUTES } from '@routes';
+import {
+    Avatar,
+    Box,
+    IconButton,
+    Popover,
+    Typography,
+    useTheme,
+} from '@mui/material';
 
 import { StyledPaper } from './Modal.styles';
 import type { ModalProps } from './Modal.types';
@@ -17,11 +20,12 @@ export const CustomModal = ({
     userEmail,
     userImage,
     text,
+    onClick,
+    component,
 }: ModalProps) => {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
     const theme = useTheme();
-    const navigate = useNavigate();
 
     return (
         <Popover
@@ -58,8 +62,8 @@ export const CustomModal = ({
 
                 <ReusableButton
                     text={text}
-                    onClick={() => void navigate(ROUTES.MANAGE_PROFILE)}
-                    component="a"
+                    onClick={onClick}
+                    component={component}
                 />
             </Box>
         </Popover>

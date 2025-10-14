@@ -5,4 +5,6 @@ export type ModalProps = {
     userEmail: string;
     userImage: string;
     text: string;
+    component?: React.ElementType;
+    onClick: () => void;
 };

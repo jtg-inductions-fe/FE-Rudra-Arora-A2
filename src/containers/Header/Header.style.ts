@@ -7,11 +7,6 @@ export const StyledAppBar = styled(AppBar)(({ theme }) => ({
     boxShadow: 'none',
 }));
 
-export const StyledImage = styled('img')(({ theme }) => ({
-    height: theme.typography.pxToRem(35),
-    cursor: 'pointer',
-}));
-
 export const HeaderBox = styled(Box)(({ theme }) => ({
     [theme.breakpoints.up('xs')]: { display: 'none' },
     [theme.breakpoints.up('md')]: { display: 'flex' },
@@ -21,8 +16,8 @@ export const HeaderBox = styled(Box)(({ theme }) => ({
 }));
 
 export const ToolbarBox = styled(Box)(({ theme }) => ({
-    mt: 2,
-    mr: 2,
+    marginTop: 2,
+    marginRight: 2,
     display: 'flex',
     gap: theme.spacing(2),
     height: theme.spacing(8),
@@ -33,8 +28,8 @@ export const ToolbarBox = styled(Box)(({ theme }) => ({
 
 export const StyledIconButton = styled(IconButton)(
     ({ theme: { palette, breakpoints } }) => ({
-        ml: 0,
-        mt: 1,
+        marginLeft: 0,
+        marginTop: 1,
         color: palette.text.primary,
 
         [breakpoints.up('md')]: {

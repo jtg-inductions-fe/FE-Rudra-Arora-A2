@@ -1,5 +1,5 @@
 export type ButtonProps = {
     text: string;
     onClick: () => void;
-    component: string;
+    component?: React.ElementType;
 };
