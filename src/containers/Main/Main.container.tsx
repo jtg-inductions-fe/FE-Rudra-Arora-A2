@@ -1,3 +1,9 @@
-// TODO: RA-A2-header: Add Main Section
+import { Box } from '@mui/material';
 
-export const Main = () => <></>;
+import { QuiltedImageList } from '@components';
+
+export const Main = () => (
+    <Box>
+        <QuiltedImageList />
+    </Box>
+);

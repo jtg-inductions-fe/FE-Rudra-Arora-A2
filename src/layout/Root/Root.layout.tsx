@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 
 import { Header, Sidebar } from '@containers';
 
-import { StyledBox } from './Root.styles';
+import { StyledStack } from './Root.styles';
 
 export const Root = () => {
     /**
@@ -52,9 +52,9 @@ export const Root = () => {
                     handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                     mobileSidebarOpen={mobileSidebarOpen}
                 />
-                <StyledBox>
+                <StyledStack>
                     <Outlet />
-                </StyledBox>
+                </StyledStack>
             </Box>
         </Box>
     );

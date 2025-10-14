@@ -1,14 +1,14 @@
-import { Box, styled } from '@mui/material';
+import { Stack, styled } from '@mui/material';
 
-export const StyledBox = styled(Box)(
-    ({ theme: { breakpoints, typography } }) => ({
+export const StyledStack = styled(Stack)(
+    ({ theme: { breakpoints, spacing, palette } }) => ({
         flexGrow: 1,
         overflow: 'auto',
-        marginTop: typography.pxToRem(82),
+        margin: spacing(20, 4, 7, 5),
+        backgroundColor: palette.background.default,
 
         [breakpoints.up('md')]: {
-            marginLeft: typography.pxToRem(260),
-            marginTop: typography.pxToRem(100),
+            margin: spacing(20, 4, 4, 66),
         },
     }),
 );
