@@ -1,4 +1,7 @@
-import { useMediaQuery, useTheme } from '@mui/material';
+import PublicIcon from '@mui/icons-material/Public';
+import SettingsIcon from '@mui/icons-material/Settings';
+import TuneIcon from '@mui/icons-material/Tune';
+import { IconButton, Stack, useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,8 +11,6 @@ import { Menu } from '@components';
 import { sidebarConfig } from './Sidebar.config';
 import { SidebarProps } from './Sidebar.types';
 
-const drawerWidth = 302;
-
 export const Sidebar = ({
     handleDrawerClose,
     handleDrawerTransitionEnd,
@@ -17,20 +18,35 @@ export const Sidebar = ({
 }: SidebarProps) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+    const drawerWidth = !isDesktop ? 300 : 250;
 
     const drawer = (
-        <div>
+        <Box>
             <Toolbar />
-            <Menu Config={sidebarConfig} />
-        </div>
+            <Stack justifyContent="space-between" height={'90vh'}>
+                <Menu Config={sidebarConfig} />
+                <Box sx={{ textAlign: 'center' }}>
+                    <IconButton
+                        color="inherit"
+                        sx={{ transform: 'rotate(90deg)' }}
+                    >
+                        <TuneIcon />
+                    </IconButton>
+
+                    <IconButton color="inherit">
+                        <PublicIcon />
+                    </IconButton>
+
+                    <IconButton color="inherit">
+                        <SettingsIcon />
+                    </IconButton>
+                </Box>
+            </Stack>
+        </Box>
     );
 
     return (
-        <Box
-            component="nav"
-            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="mailbox folders"
-        >
+        <Box component="nav" aria-label="mailbox folders">
             {!isDesktop ? (
                 <Drawer
                     variant="temporary"
@@ -38,7 +54,6 @@ export const Sidebar = ({
                     onTransitionEnd={handleDrawerTransitionEnd}
                     onClose={handleDrawerClose}
                     sx={{
-                        display: { xs: 'block', md: 'none' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
@@ -51,7 +66,6 @@ export const Sidebar = ({
                 <Drawer
                     variant="permanent"
                     sx={{
-                        display: { xs: 'none', md: 'block' },
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,

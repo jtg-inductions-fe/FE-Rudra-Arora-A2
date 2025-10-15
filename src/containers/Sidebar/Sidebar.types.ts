@@ -1,4 +1,4 @@
-import { SvgIconProps } from '@mui/material';
+import { SvgIconComponent } from '@mui/icons-material';
 
 export type SidebarProps = {
     handleDrawerClose: () => void;
@@ -8,7 +8,7 @@ export type SidebarProps = {
 
 export type SidebarMenuType = {
     title: string;
-    icon?: React.ComponentType<SvgIconProps>;
+    icon?: SvgIconComponent;
     route?: string;
     children?: SidebarMenuType[];
     count?: number;
