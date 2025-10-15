@@ -1,0 +1,30 @@
+[
+    {
+        "img": "src/assets/images/hero-image-1.webp",
+        "title": "Main-Image-1",
+        "rows_sm": 2,
+        "cols_sm": 4,
+        "rows_lg": 2
+    },
+    {
+        "img": "src/assets/images/hero-image-2.webp",
+        "title": "Main-Image-2",
+        "cols_sm": 4,
+        "rows_sm": 1,
+        "rows_lg": 2
+    },
+    {
+        "img": "src/assets/images/hero-image-3.webp",
+        "title": "Main-Image-3",
+        "rows_lg": 3,
+        "cols_lg": 2,
+        "cols_sm": 4,
+        "rows_sm": 1
+    },
+    {
+        "img": "src/assets/images/hero-image-4.webp",
+        "title": "Main-Image-4",
+        "cols_lg": 2,
+        "rows_lg": 1
+    }
+]

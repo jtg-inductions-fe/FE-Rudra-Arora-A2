@@ -1,11 +1,7 @@
-import { useMediaQuery, useTheme } from '@mui/material';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+import { ImageListItem, useMediaQuery, useTheme } from '@mui/material';
 
-import hero_image_1 from '@assets/images/hero-image-1.webp';
-import hero_image_2 from '@assets/images/hero-image-2.webp';
-import hero_image_3 from '@assets/images/hero-image-3.webp';
-import hero_image_4 from '@assets/images/hero-image-4.webp';
+import { StyledImageList } from './ImageList.styles';
+import { ImageListProps } from './ImageList.types';
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
     return {
@@ -16,65 +12,33 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
     };
 }
 
-export const QuiltedImageList = () => {
+export const QuiltedImageList = ({ Data }: ImageListProps) => {
     const theme = useTheme();
 
-    const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
-    // console.log(isDesktop)
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+
+    const visibleItems = isDesktop ? Data : Data.slice(0, -1);
 
     return (
-        <ImageList
-            sx={{
-                width: '100%',
-                height: 529,
-                m: 0,
-                [theme.breakpoints.up('sm')]: { height: 310 },
-            }}
+        <StyledImageList
             variant="quilted"
             cols={4}
-            rowHeight={!isDesktop ? 130 : 155}
+            rowHeight={!isDesktop ? 115 : 130}
+            gap={isDesktop ? 40 : 20}
         >
-            {itemData.map((item) => (
+            {visibleItems.map((item) => (
                 <ImageListItem
                     key={item.img}
-                    cols={!isDesktop ? item.cols_sm || 0 : item.cols_lg || 1}
+                    cols={!isDesktop ? item.cols_sm || 1 : item.cols_lg || 1}
                     rows={!isDesktop ? item.rows_sm || 1 : item.rows_lg || 1}
                 >
                     <img
-                        {...srcset(item.img, 150)}
+                        {...srcset(item.img, 160)}
                         alt={item.title}
                         loading="lazy"
                     />
                 </ImageListItem>
             ))}
-        </ImageList>
+        </StyledImageList>
     );
 };
-
-const itemData = [
-    {
-        img: hero_image_1,
-        title: 'Hats',
-        rows_sm: 2,
-        cols_sm: 4,
-    },
-    {
-        img: hero_image_2,
-        title: 'Honey',
-        cols_sm: 4,
-        rows_sm: 1,
-    },
-    {
-        img: hero_image_3,
-        title: 'Basketball',
-        rows_lg: 2,
-        cols_lg: 2,
-        cols_sm: 4,
-        rows_sm: 1,
-    },
-    {
-        img: hero_image_4,
-        title: 'Fern',
-        cols_lg: 2,
-    },
-];

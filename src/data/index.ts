@@ -1,3 +1,4 @@
+export { HeroData } from './HeroData';
 export { UserData } from './UserData';
 export { CustomerData } from './CustomerData';
 export { ProductsData } from './ProductsData';
