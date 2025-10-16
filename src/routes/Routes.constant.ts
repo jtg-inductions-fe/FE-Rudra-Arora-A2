@@ -14,4 +14,6 @@ export const ROUTES = {
     PRODUCT_LIST: '/products/list',
     BILLING: '/billing',
     INVOICE: '/invoice',
+
+    MANAGE_PROFILE: '/manage-profile',
 };

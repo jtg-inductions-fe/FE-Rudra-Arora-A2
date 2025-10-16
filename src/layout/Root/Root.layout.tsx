@@ -2,16 +2,15 @@ import { Outlet } from 'react-router-dom';
 
 import { Box } from '@mui/material';
 
-import { Header, Sidebar } from '@containers';
+import { Header } from '@containers';
 
 export const Root = () => (
-    <>
+    <Box display="flex" sx={{ flexWrap: 'wrap' }}>
         <Header />
-        <Box sx={{ display: 'flex' }}>
-            <Sidebar />
-            <Box sx={{ width: '80%' }}>
+        <Box display="flex" width="100%">
+            <Box component="main" sx={{ flexGrow: 1, overflow: 'auto' }}>
                 <Outlet />
             </Box>
         </Box>
-    </>
+    </Box>
 );
