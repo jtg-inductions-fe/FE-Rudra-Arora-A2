@@ -4,7 +4,6 @@ import TuneIcon from '@mui/icons-material/Tune';
 import { IconButton, Stack, useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
 
 import { Menu } from '@components';
 
@@ -22,7 +21,6 @@ export const Sidebar = ({
 
     const drawer = (
         <Box>
-            <Toolbar />
             <Stack justifyContent="space-between" height={'90vh'}>
                 <Menu Config={sidebarConfig} />
                 <Box sx={{ textAlign: 'center' }}>
@@ -57,6 +55,7 @@ export const Sidebar = ({
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
+                            marginTop: theme.typography.pxToRem(65),
                         },
                     }}
                 >
@@ -69,6 +68,7 @@ export const Sidebar = ({
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
+                            marginTop: theme.typography.pxToRem(65),
                         },
                     }}
                     open

@@ -58,7 +58,11 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
             <StyledAppBar sx={{ zIndex: theme.zIndex.drawer + 1 }}>
                 <Toolbar sx={{ justifyContent: 'space-between' }}>
                     {!isDesktop ? (
-                        <StyledIconButton aria-label="open drawer" edge="start">
+                        <StyledIconButton
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                        >
                             <MenuOpenIcon
                                 sx={{ fontSize: theme.typography.pxToRem(32) }}
                             />
