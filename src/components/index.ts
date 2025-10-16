@@ -4,6 +4,6 @@ export { Menu } from './Menu';
 
 export { CustomModal } from './Modal';
 
-export { SearchBar } from './SearchBar';
-
 export { Loader } from './Loader';
+
+export { SearchBar } from './SearchBar';

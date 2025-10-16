@@ -62,6 +62,7 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
                             aria-label="open drawer"
                             edge="start"
                             onClick={handleDrawerToggle}
+                            aria-controls="sidebar-drawer"
                         >
                             <MenuOpenIcon
                                 sx={{ fontSize: theme.typography.pxToRem(32) }}

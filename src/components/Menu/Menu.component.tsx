@@ -11,26 +11,24 @@ import {
     Divider,
     List,
     ListItemText,
+    useTheme,
 } from '@mui/material';
 
 import { StyledListItemButton } from './Menu.styles';
 import { MenuProps } from './Menu.types';
 
 export const Menu = ({ Config }: MenuProps) => {
-    const [openIndex, setOpenIndex] = useState<number[]>([]);
+    const [openKeys, setOpenKeys] = useState<string[]>([]);
     const navigate = useNavigate();
+    const theme = useTheme();
 
-    const handleClick = (
-        index: number,
-        hasChildren?: number,
-        route?: string,
-    ) => {
+    const handleClick = (key: string, hasChildren?: number, route?: string) => {
         if (hasChildren) {
-            if (openIndex.includes(index)) {
-                setOpenIndex((prev) => prev.filter((i) => i !== index));
-            } else {
-                setOpenIndex((prev) => [...prev, index]);
-            }
+            setOpenKeys((prev) =>
+                prev.includes(key)
+                    ? prev.filter((k) => k !== key)
+                    : [...prev, key],
+            );
         }
 
         if (route) {
@@ -38,16 +36,20 @@ export const Menu = ({ Config }: MenuProps) => {
         }
     };
 
-    const RecursiveMenuItems = (items: MenuProps['Config'][number]) =>
+    const RecursiveMenuItems = (
+        items: MenuProps['Config'][number],
+        prefix = '',
+    ) =>
         items.map((item, index) => {
+            const key = `${prefix} - ${index}`;
             const hasChildren = item.children?.length;
-            const isOpen = openIndex.includes(index);
+            const isOpen = openKeys.includes(key);
 
             return (
-                <React.Fragment key={index}>
+                <React.Fragment key={key}>
                     <StyledListItemButton
                         onClick={() =>
-                            handleClick(index, hasChildren, item.route)
+                            handleClick(key, hasChildren, item.route)
                         }
                     >
                         {item.icon && <item.icon />}
@@ -70,10 +72,10 @@ export const Menu = ({ Config }: MenuProps) => {
                             <List
                                 component="div"
                                 disablePadding
-                                sx={{ ml: 14 }}
+                                sx={{ ml: theme.spacing(14) }}
                             >
                                 {item.children &&
-                                    RecursiveMenuItems(item.children)}
+                                    RecursiveMenuItems(item.children, key)}
                             </List>
                         </Collapse>
                     )}
@@ -82,15 +84,11 @@ export const Menu = ({ Config }: MenuProps) => {
         });
 
     return (
-        <List
-            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-        >
+        <List component="nav" aria-labelledby="nested-list-subheader">
             {Config.map((section, sectionIndex) => (
                 <Box key={sectionIndex}>
                     {sectionIndex > 0 && <Divider />}
-                    {RecursiveMenuItems(section)}
+                    {RecursiveMenuItems(section, `s${sectionIndex}`)}
                 </Box>
             ))}
         </List>

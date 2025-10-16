@@ -27,15 +27,16 @@ export const Sidebar = ({
                     <IconButton
                         color="inherit"
                         sx={{ transform: 'rotate(90deg)' }}
+                        aria-label="tune filters"
                     >
                         <TuneIcon />
                     </IconButton>
 
-                    <IconButton color="inherit">
+                    <IconButton color="inherit" aria-label="change language">
                         <PublicIcon />
                     </IconButton>
 
-                    <IconButton color="inherit">
+                    <IconButton color="inherit" aria-label="open settings">
                         <SettingsIcon />
                     </IconButton>
                 </Box>
@@ -44,13 +45,15 @@ export const Sidebar = ({
     );
 
     return (
-        <Box component="nav" aria-label="mailbox folders">
+        <Box component="nav" aria-label="primary navigation">
             {!isDesktop ? (
                 <Drawer
                     variant="temporary"
                     open={mobileSidebarOpen}
                     onTransitionEnd={handleDrawerTransitionEnd}
                     onClose={handleDrawerClose}
+                    ModalProps={{ keepMounted: true }}
+                    PaperProps={{ id: 'sidebar-drawer' }}
                     sx={{
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
@@ -64,6 +67,7 @@ export const Sidebar = ({
             ) : (
                 <Drawer
                     variant="permanent"
+                    PaperProps={{ id: 'sidebar-drawer' }}
                     sx={{
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',

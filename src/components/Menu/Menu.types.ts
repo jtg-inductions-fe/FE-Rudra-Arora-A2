@@ -1,5 +1,5 @@
-import { SidebarMenuType } from '@containers';
+import { MenuItemType } from '@containers';
 
 export type MenuProps = {
-    Config: SidebarMenuType[][];
+    Config: MenuItemType[][];
 };
