@@ -1,7 +1,20 @@
-// TODO: RA-A2-base-setup: Add error page
+import { Link } from 'react-router-dom';
+
+import { Box } from '@mui/material';
+
+import notFoundImage from '@assets/images/404.webp';
+import { ErrorPage } from '@components';
+import { ROUTES } from '@routes';
 
 export const NotFound = () => (
-    <div>
-        <h1>404 page</h1>
-    </div>
+    <Box sx={{ mt: 16 }}>
+        <ErrorPage
+            image={notFoundImage}
+            title="Page not found"
+            body="Oops! Looks like you followed a bad link. If you think this is a problem with us, please tell us."
+            buttonText="Go Home"
+            component={Link}
+            to={ROUTES.ROOT}
+        />
+    </Box>
 );
