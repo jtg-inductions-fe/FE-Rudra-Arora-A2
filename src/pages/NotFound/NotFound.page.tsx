@@ -13,7 +13,7 @@ export const NotFound = () => (
             title="Page not found"
             body="Oops! Looks like you followed a bad link. If you think this is a problem with us, please tell us."
             buttonText="Go Home"
-            component={Link}
+            buttonComponent={Link}
             to={ROUTES.ROOT}
         />
     </Box>

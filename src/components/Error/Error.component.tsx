@@ -8,30 +8,28 @@ export const ErrorPage = ({
     title,
     body,
     buttonText,
-    component,
+    buttonComponent,
     to,
 }: ErrorProps) => (
-    <>
-        <StyledBox>
-            <Box
-                component="img"
-                src={image}
-                sx={{ maxWidth: '100%', pointerEvents: 'none' }}
-            ></Box>
+    <StyledBox>
+        <Box
+            component="img"
+            src={image}
+            sx={{ maxWidth: '100%', pointerEvents: 'none' }}
+        />
 
-            <Typography variant="h1">{title}</Typography>
+        <Typography variant="h1">{title}</Typography>
 
-            <Typography
-                variant="body1"
-                color="textSecondary"
-                sx={{ maxWidth: '80%' }}
-            >
-                {body}
-            </Typography>
+        <Typography
+            variant="body1"
+            color="textSecondary"
+            sx={{ maxWidth: '80%' }}
+        >
+            {body}
+        </Typography>
 
-            <Button variant="contained" component={component} to={to}>
-                {buttonText}
-            </Button>
-        </StyledBox>
-    </>
+        <Button variant="contained" component={buttonComponent} to={to}>
+            {buttonText}
+        </Button>
+    </StyledBox>
 );
