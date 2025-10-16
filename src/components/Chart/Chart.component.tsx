@@ -1,26 +1,41 @@
 import {
     CartesianGrid,
-    Legend,
     Line,
     LineChart,
+    ResponsiveContainer,
     Tooltip,
     XAxis,
     YAxis,
 } from 'recharts';
-const data = [{ name: 'Page A', uv: 400, pv: 2400, amt: 2400 }];
+
+const data = [
+    { date: '2025-04-01', sales: 85000 },
+    { date: '2025-04-02', sales: 79000 },
+    { date: '2025-04-03', sales: 92000 },
+    { date: '2025-04-04', sales: 88000 },
+    { date: '2025-04-05', sales: 100000 },
+    { date: '2025-04-06', sales: 96000 },
+    { date: '2025-04-07', sales: 130000 },
+];
 
 export const Chart = () => (
-    <LineChart
-        width={680}
-        height={500}
-        data={data}
-        margin={{ top: 50, right: 50, bottom: 20, left: 50 }}
-    >
-        <CartesianGrid stroke="#aaa" strokeDasharray="0 0" />
-        <Line type="monotone" dataKey="uv" stroke="purple" strokeWidth={2} />
-        <XAxis dataKey="name" />
-        <YAxis width="auto" />
-        <Legend align="right" />
-        <Tooltip />
-    </LineChart>
+    <ResponsiveContainer width="100%" height={500}>
+        <LineChart data={data} margin={{ bottom: 50 }}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+                dataKey="date"
+                padding={{ left: 60, right: 60 }}
+                tickLine={false}
+                axisLine={false}
+            />
+            <YAxis axisLine={false} tickLine={false} />
+            <Tooltip />
+            <Line
+                type="monotone"
+                dataKey="sales"
+                stroke="red"
+                strokeWidth={2}
+            />
+        </LineChart>
+    </ResponsiveContainer>
 );

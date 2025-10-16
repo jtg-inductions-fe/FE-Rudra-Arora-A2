@@ -11,7 +11,6 @@ export { Chart } from './Chart';
 export { QuiltedImageList } from './ImageList';
 
 
-
 export { Loader } from './Loader';
 
 export { SearchBar } from './SearchBar';
