@@ -17,7 +17,10 @@ export const Sidebar = ({
 }: SidebarProps) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-    const drawerWidth = !isDesktop ? 300 : 250;
+    const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
+    const drawerWidth = !isDesktop
+        ? theme.typography.pxToRem(300)
+        : theme.typography.pxToRem(250);
 
     const drawer = (
         <Box>
@@ -58,7 +61,9 @@ export const Sidebar = ({
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
-                            marginTop: theme.typography.pxToRem(65),
+                            marginTop: !isTablet
+                                ? theme.typography.pxToRem(53)
+                                : theme.typography.pxToRem(65),
                         },
                     }}
                 >
