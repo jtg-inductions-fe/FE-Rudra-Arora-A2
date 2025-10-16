@@ -1,4 +1,4 @@
 import data from './UserData.json';
-import type { UserType } from './UserData.type';
+import type { UserDataType } from './UserData.type';
 
-export const UserData: UserType = data;
+export const UserData: UserDataType = data;

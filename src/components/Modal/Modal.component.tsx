@@ -1,10 +1,7 @@
-import { ReusableButton } from 'components/Button';
-
-import CloseIcon from '@mui/icons-material/Close';
 import {
     Avatar,
     Box,
-    IconButton,
+    Button,
     Popover,
     Typography,
     useTheme,
@@ -19,9 +16,8 @@ export const CustomModal = ({
     userName,
     userEmail,
     userImage,
-    text,
-    onClick,
-    component,
+    buttonText,
+    onButtonClick,
 }: ModalProps) => {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -43,12 +39,6 @@ export const CustomModal = ({
                 },
             }}
         >
-            <IconButton
-                onClick={handleModalClose}
-                sx={{ position: 'absolute' }}
-            >
-                <CloseIcon />
-            </IconButton>
             <Box
                 sx={{
                     ...theme.mixins.flexCenter('column'),
@@ -60,11 +50,11 @@ export const CustomModal = ({
                 <Typography variant="h2">{userName}</Typography>
                 <Typography variant="subtitle1">{userEmail}</Typography>
 
-                <ReusableButton
-                    text={text}
-                    onClick={onClick}
-                    component={component}
-                />
+                {buttonText && (
+                    <Button variant="contained" onClick={onButtonClick}>
+                        {buttonText}
+                    </Button>
+                )}
             </Box>
         </Popover>
     );

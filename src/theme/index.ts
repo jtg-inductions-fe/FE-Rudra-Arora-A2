@@ -27,6 +27,19 @@ theme = createTheme(theme, {
     typography: {
         ...typography.typographyStyle(theme),
     },
+    components: {
+        ...theme.components,
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    borderRadius: theme.typography.pxToRem(12),
+                    textTransform: 'none',
+                    padding: theme.spacing(2, 4),
+                    boxShadow: 'none',
+                },
+            },
+        },
+    },
 });
 
 export { theme };

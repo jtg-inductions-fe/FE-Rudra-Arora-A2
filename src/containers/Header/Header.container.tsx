@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Avatar, Divider, IconButton, Toolbar, useTheme } from '@mui/material';
+import {
+    Avatar,
+    Divider,
+    IconButton,
+    Toolbar,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
 
 import logo from '@assets/images/Logo.webp';
-import { SearchBar } from '@components';
-import { CustomModal } from '@components';
-import { ProductsData, UserData } from '@data';
+import { CustomModal, ModalSkeleton, SearchBar } from '@components';
+import { useProductsData, useUserData } from '@hooks';
 import { ROUTES } from '@routes';
 
 import {
@@ -22,11 +28,18 @@ import {
 export const Header = () => {
     const navigate = useNavigate();
     const theme = useTheme();
-    const searchItems = ProductsData.map((item) => item.productName);
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-    const handleModalOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const productResponse = useProductsData();
+
+    const searchItems =
+        productResponse.data?.map((item) => item.productName) ?? [];
+
+    const userResponse = useUserData();
+
+    const handleModalOpen = (event: MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -43,35 +56,39 @@ export const Header = () => {
         <>
             <StyledAppBar sx={{ zIndex: theme.zIndex.drawer + 1 }}>
                 <Toolbar sx={{ justifyContent: 'space-between' }}>
-                    <StyledIconButton aria-label="open drawer" edge="start">
-                        <MenuOpenIcon
-                            sx={{ fontSize: theme.typography.pxToRem(32) }}
-                        />
-                    </StyledIconButton>
-
-                    <HeaderBox>
-                        <IconButton
-                            onClick={() => void navigate('/')}
-                            sx={{ p: 0 }}
-                        >
-                            <Avatar src={logo} alt="main logo" />
-                        </IconButton>
-                        <SearchBar
-                            searchItems={searchItems}
-                            handleSearchChange={handleSearchChange}
-                        />
-                    </HeaderBox>
+                    {!isDesktop ? (
+                        <StyledIconButton aria-label="open drawer" edge="start">
+                            <MenuOpenIcon
+                                sx={{ fontSize: theme.typography.pxToRem(32) }}
+                            />
+                        </StyledIconButton>
+                    ) : (
+                        <HeaderBox>
+                            <IconButton
+                                sx={{ p: 0 }}
+                                component={Link}
+                                to={ROUTES.ROOT}
+                                aria-label="Main Logo"
+                            >
+                                <Avatar src={logo} alt="main logo" />
+                            </IconButton>
+                            <SearchBar
+                                searchItems={searchItems}
+                                handleSearchChange={handleSearchChange}
+                            />
+                        </HeaderBox>
+                    )}
 
                     <ToolbarBox>
                         <IconButton
-                            onClick={() => {
-                                void navigate(ROUTES.NOTIFICATIONS);
-                            }}
                             sx={{
                                 color: theme.palette.common.black,
                                 boxShadow: theme.shadows[4],
                                 p: 1,
                             }}
+                            component={Link}
+                            to={ROUTES.NOTIFICATIONS}
+                            aria-label="Notifications"
                         >
                             <NotificationsIcon
                                 sx={{ fontSize: theme.typography.pxToRem(24) }}
@@ -83,7 +100,7 @@ export const Header = () => {
                             sx={{ p: 0 }}
                         >
                             <Avatar
-                                src={UserData.user1.userImage}
+                                src={userResponse.data?.userImage}
                                 alt="profile image"
                                 sx={{
                                     height: '100%',
@@ -95,16 +112,26 @@ export const Header = () => {
                 </Toolbar>
                 <Divider />
             </StyledAppBar>
-            <CustomModal
-                anchorEl={anchorEl}
-                handleModalClose={handleModalClose}
-                userName={UserData.user1.userName}
-                userEmail={UserData.user1.userEmail}
-                userImage={UserData.user1.userImage}
-                text="Manage Profile"
-                onClick={() => void navigate(ROUTES.MANAGE_PROFILE)}
-                component="a"
-            />
+
+            {!userResponse.data ? (
+                <ModalSkeleton
+                    anchorEl={anchorEl}
+                    handleModalClose={handleModalClose}
+                />
+            ) : (
+                <CustomModal
+                    anchorEl={anchorEl}
+                    handleModalClose={handleModalClose}
+                    userName={userResponse.data.userName}
+                    userEmail={userResponse.data.userEmail}
+                    userImage={userResponse.data.userImage}
+                    buttonText="Manage Profile"
+                    onButtonClick={() => {
+                        void navigate(ROUTES.MANAGE_PROFILE);
+                        void handleModalClose();
+                    }}
+                />
+            )}
         </>
     );
 };

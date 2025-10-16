@@ -1,8 +1,9 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import SearchIcon from '@mui/icons-material/Search';
 import { debounce, InputAdornment, TextField } from '@mui/material';
 
+import { SearchBarConstants } from './SearchBar.constants';
 import { StyledSearchBar } from './SearchBar.styles';
 import type { SearchBarProps } from './SearchBar.types';
 
@@ -11,30 +12,33 @@ export const SearchBar = ({
     handleSearchChange,
 }: SearchBarProps) => {
     const [options, setOptions] = useState<string[]>(searchItems);
-    const [inputvalue, setInputValue] = useState('');
 
-    const debouncedFiltering = useMemo(
-        () =>
-            debounce((value: string) => {
-                if (value !== undefined) {
-                    if (!value.trim) {
-                        setOptions(searchItems);
-                        return;
-                    }
+    useEffect(() => {
+        setOptions(searchItems);
+    }, [searchItems]);
 
-                    const filtered = searchItems.filter((item) =>
-                        item.toLowerCase().includes(value.toLowerCase()),
-                    );
+    const debouncedFiltering = useCallback(
+        debounce((value: string) => {
+            if (value !== undefined) {
+                const filtered = searchItems.filter((item) =>
+                    item.toLowerCase().includes(value.toLowerCase()),
+                );
 
-                    setOptions(filtered);
-                }
-            }, 500),
-        [],
+                setOptions(filtered);
+            }
+        }, SearchBarConstants.SEARCHDELAY),
+        [searchItems],
+    );
+
+    useEffect(
+        () => () => {
+            debouncedFiltering.clear();
+        },
+        [debouncedFiltering],
     );
 
     const handleInputChange = useCallback(
         (_event: React.SyntheticEvent, value: string) => {
-            setInputValue(value);
             debouncedFiltering(value);
         },
         [debouncedFiltering],
@@ -45,18 +49,17 @@ export const SearchBar = ({
             freeSolo
             disableClearable
             onChange={(_event, value) => {
-                if (typeof value == 'string') {
+                if (typeof value === 'string') {
                     handleSearchChange(value);
                 }
             }}
             options={options}
-            inputValue={inputvalue}
-            onInputChange={(event, value) => handleInputChange(event, value)}
+            onInputChange={handleInputChange}
             filterOptions={(option) => option}
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    placeholder="Search"
+                    placeholder={SearchBarConstants.PLACEHOLDER}
                     slotProps={{
                         input: {
                             ...params.InputProps,

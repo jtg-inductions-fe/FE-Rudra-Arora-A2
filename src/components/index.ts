@@ -1,4 +1,4 @@
-export { ReusableButton } from './Button';
+export { ModalSkeleton } from './Modal';
 
 export { CustomModal } from './Modal';
 
