@@ -21,7 +21,8 @@
         "@mui/material": "6.4.1",
         "react": "19.0.0",
         "react-dom": "19.0.0",
-        "react-router-dom": "^7.9.1"
+        "react-router-dom": "^7.9.1",
+        "recharts": "^3.2.1"
     },
     "devDependencies": {
         "@types/eslint-plugin-jsx-a11y": "6",

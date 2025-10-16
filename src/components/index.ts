@@ -1,12 +1,16 @@
 export { AvatarSkeleton } from './Avatar';
 
 export { AvatarComponent } from './Avatar';
-export { QuiltedImageList } from './ImageList';
 
 export { ErrorDisplay } from './Error';
 export { Menu } from './Menu';
 
 export { CustomModal } from './Modal';
+export { Chart } from './Chart';
+
+export { QuiltedImageList } from './ImageList';
+
+
 
 export { Loader } from './Loader';
 
