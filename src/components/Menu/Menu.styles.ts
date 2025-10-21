@@ -1,6 +1,15 @@
-import { ListItemButton, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-export const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
+import { ListItemButton, ListItemButtonProps, styled } from '@mui/material';
+
+type StyledListItemButtonProps = ListItemButtonProps & {
+    to?: string;
+    component?: typeof Link | 'button';
+};
+
+export const StyledListItemButton = styled(
+    ListItemButton,
+)<StyledListItemButtonProps>(({ theme }) => ({
     borderRadius: theme.typography.pxToRem(12),
     padding: theme.spacing(1),
     margin: theme.spacing(2, 4),

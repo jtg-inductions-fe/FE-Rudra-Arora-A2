@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -19,21 +19,12 @@ import { MenuProps } from './Menu.types';
 
 export const Menu = ({ Config }: MenuProps) => {
     const [openKeys, setOpenKeys] = useState<string[]>([]);
-    const navigate = useNavigate();
     const theme = useTheme();
 
-    const handleClick = (key: string, hasChildren?: number, route?: string) => {
-        if (hasChildren) {
-            setOpenKeys((prev) =>
-                prev.includes(key)
-                    ? prev.filter((k) => k !== key)
-                    : [...prev, key],
-            );
-        }
-
-        if (route) {
-            void navigate(route);
-        }
+    const handleClick = (key: string) => {
+        setOpenKeys((prev) =>
+            prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
+        );
     };
 
     const RecursiveMenuItems = (
@@ -48,9 +39,11 @@ export const Menu = ({ Config }: MenuProps) => {
             return (
                 <React.Fragment key={key}>
                     <StyledListItemButton
-                        onClick={() =>
-                            handleClick(key, hasChildren, item.route)
-                        }
+                        onClick={() => {
+                            if (hasChildren) handleClick(key);
+                        }}
+                        component={!hasChildren ? RouterLink : 'button'}
+                        to={!hasChildren ? item.route : undefined}
                     >
                         {item.icon && <item.icon />}
 
@@ -84,7 +77,7 @@ export const Menu = ({ Config }: MenuProps) => {
         });
 
     return (
-        <List component="nav" aria-labelledby="nested-list-subheader">
+        <List aria-label="nested-list-sidebar">
             {Config.map((section, sectionIndex) => (
                 <Box key={sectionIndex}>
                     {sectionIndex > 0 && <Divider />}

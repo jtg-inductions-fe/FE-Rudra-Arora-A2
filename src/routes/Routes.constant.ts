@@ -17,4 +17,8 @@ export const ROUTES = {
     INVOICE: '/invoice',
 
     MANAGE_PROFILE: '/manage-profile',
+
+    TUNE: '/tune-filters',
+    SETTINGS: '/settings',
+    PUBLIC: '/public',
 };

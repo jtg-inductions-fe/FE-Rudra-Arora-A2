@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import PublicIcon from '@mui/icons-material/Public';
 import SettingsIcon from '@mui/icons-material/Settings';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -6,6 +8,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 
 import { Menu } from '@components';
+import { ROUTES } from '@routes';
 
 import { sidebarConfig } from './Sidebar.config';
 import { SidebarProps } from './Sidebar.types';
@@ -23,28 +26,38 @@ export const Sidebar = ({
         : theme.typography.pxToRem(250);
 
     const drawer = (
-        <Box>
-            <Stack justifyContent="space-between" height={'90vh'}>
-                <Menu Config={sidebarConfig} />
-                <Box sx={{ textAlign: 'center' }}>
-                    <IconButton
-                        color="inherit"
-                        sx={{ transform: 'rotate(90deg)' }}
-                        aria-label="tune filters"
-                    >
-                        <TuneIcon />
-                    </IconButton>
+        <Stack justifyContent="space-between" height={'90vh'}>
+            <Menu Config={sidebarConfig} />
+            <Box sx={{ textAlign: 'center' }}>
+                <IconButton
+                    color="inherit"
+                    sx={{ transform: 'rotate(90deg)' }}
+                    aria-label="tune filters"
+                    component={Link}
+                    to={ROUTES.TUNE}
+                >
+                    <TuneIcon />
+                </IconButton>
 
-                    <IconButton color="inherit" aria-label="change language">
-                        <PublicIcon />
-                    </IconButton>
+                <IconButton
+                    color="inherit"
+                    aria-label="change language"
+                    component={Link}
+                    to={ROUTES.PUBLIC}
+                >
+                    <PublicIcon />
+                </IconButton>
 
-                    <IconButton color="inherit" aria-label="open settings">
-                        <SettingsIcon />
-                    </IconButton>
-                </Box>
-            </Stack>
-        </Box>
+                <IconButton
+                    color="inherit"
+                    aria-label="open settings"
+                    component={Link}
+                    to={ROUTES.SETTINGS}
+                >
+                    <SettingsIcon />
+                </IconButton>
+            </Box>
+        </Stack>
     );
 
     return (
