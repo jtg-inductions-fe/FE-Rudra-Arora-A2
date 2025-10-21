@@ -1,48 +1,70 @@
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
+import {
+    Avatar,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow,
+    Typography,
+    useTheme,
+} from '@mui/material';
 
-function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-) {
-    return { name, calories, fat, carbs, protein };
-}
+import { TableProps } from './ReusableTable.types';
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+export const ReusableTable = ({ data }: TableProps) => {
+    const theme = useTheme();
 
-export const ReusableTable = () => (
-    <TableContainer component={Paper} sx={{ boxShadow: 'none' }}>
-        <Table aria-label="reusable table">
-            <TableBody>
-                {rows.map((row) => (
-                    <TableRow
-                        key={row.name}
-                        sx={{
-                            '&:last-child td, &:last-child th': {
-                                border: 0,
-                            },
-                        }}
-                    >
-                        <TableCell component="th" scope="row">
-                            {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.calories}</TableCell>
-                    </TableRow>
-                ))}
-            </TableBody>
-        </Table>
-    </TableContainer>
-);
+    return (
+        <TableContainer>
+            <Table
+                sx={{
+                    borderCollapse: 'collapse',
+                }}
+            >
+                <TableBody>
+                    {data.map((item, index) => (
+                        <TableRow
+                            key={index}
+                            sx={{
+                                '&:not(:last-child)': {
+                                    borderBottom: '2px solid',
+                                    borderColor: 'divider',
+                                },
+                            }}
+                        >
+                            {item.avatar && (
+                                <TableCell padding="none" width={40}>
+                                    <Avatar
+                                        src={item.avatar}
+                                        alt={item.label}
+                                        sx={{
+                                            width: '100%',
+                                            height: '100%',
+                                            pr: theme.typography.pxToRem(8),
+                                        }}
+                                    />
+                                </TableCell>
+                            )}
+                            <TableCell sx={{ p: 0 }}>
+                                <Typography variant="h4">
+                                    {item.label}
+                                </Typography>
+                                <Typography
+                                    variant="subtitle2"
+                                    color="text.secondary"
+                                >
+                                    {item.caption}
+                                </Typography>
+                            </TableCell>
+                            <TableCell>
+                                <Typography variant="h4" textAlign="right">
+                                    {item.value}
+                                </Typography>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
+};

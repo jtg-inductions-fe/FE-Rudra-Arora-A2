@@ -1,13 +1,23 @@
-import { Stack, useTheme } from '@mui/material';
+import { Stack, Typography, useTheme } from '@mui/material';
 
 import { ReusableTable } from '@components';
+import { useCustomerData } from '@hooks';
 
 export const Customer = () => {
     const theme = useTheme();
+    const CustomerResponse = useCustomerData();
+
+    const CustomersData =
+        CustomerResponse.data?.map((item) => ({
+            label: item.customerName,
+            caption: item.customerEmail,
+            value: `$${item.customerAmount}`,
+            avatar: item.customerImage,
+        })) ?? [];
 
     return (
         <Stack
-            flex={1}
+            flex={2}
             sx={{
                 ...theme.mixins.BoxStyle(theme.typography.pxToRem(16)),
 
@@ -15,8 +25,10 @@ export const Customer = () => {
                     ...theme.mixins.BoxStyle(theme.typography.pxToRem(24)),
                 },
             }}
+            gap={theme.spacing(4)}
         >
-            <ReusableTable />
+            <Typography variant="h2">Latest Customers</Typography>
+            <ReusableTable data={CustomersData} />
         </Stack>
     );
 };
