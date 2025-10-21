@@ -15,6 +15,7 @@ export const Main = () => {
                 [theme.breakpoints.up('lg')]: {
                     maxWidth: theme.typography.pxToRem(1320),
                     margin: 'auto',
+                    width: '100%',
                 },
             }}
         >

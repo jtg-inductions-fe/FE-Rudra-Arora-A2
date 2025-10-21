@@ -11,7 +11,7 @@ import {
 
 import { TableProps } from './ReusableTable.types';
 
-export const ReusableTable = ({ data }: TableProps) => {
+export const ReusableTable = ({ data, valueFormat }: TableProps) => {
     const theme = useTheme();
 
     return (
@@ -58,7 +58,7 @@ export const ReusableTable = ({ data }: TableProps) => {
                             </TableCell>
                             <TableCell>
                                 <Typography variant="h4" textAlign="right">
-                                    {item.value}
+                                    {valueFormat(item.value)}
                                 </Typography>
                             </TableCell>
                         </TableRow>

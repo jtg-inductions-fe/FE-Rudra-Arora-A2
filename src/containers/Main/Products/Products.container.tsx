@@ -1,5 +1,6 @@
-import { Stack, Typography, useTheme } from '@mui/material';
+import { Box, Stack, Typography, useTheme } from '@mui/material';
 
+import TableSkeleton from '@assets/images/table-skeleton.webp';
 import { ReusableTable } from '@components';
 import { useProductsData } from '@hooks';
 
@@ -12,8 +13,17 @@ export const Products = () => {
         ProductsResponse.data?.map((item) => ({
             label: item.productName,
             caption: item.technologyStack,
-            value: `${item.sales}`,
+            value: item.sales,
         })) ?? [];
+
+    const valueFormat = (value: number) => (
+        <>
+            {value}{' '}
+            <Typography component="span" color="text.disabled">
+                sales
+            </Typography>
+        </>
+    );
 
     return (
         <Stack
@@ -28,7 +38,11 @@ export const Products = () => {
             gap={theme.spacing(4)}
         >
             <Typography variant="h2">Top products</Typography>
-            <ReusableTable data={ProductsData} />
+            {!ProductsResponse.loading ? (
+                <ReusableTable data={ProductsData} valueFormat={valueFormat} />
+            ) : (
+                <Box component="img" src={TableSkeleton} width={'100%'} />
+            )}
         </Stack>
     );
 };

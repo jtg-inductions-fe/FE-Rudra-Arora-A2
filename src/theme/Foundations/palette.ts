@@ -23,6 +23,7 @@ export const palette: PaletteOptions = {
     text: {
         primary: '#111827',
         secondary: '#6B7280',
+        disabled: '#4B5563',
     },
     background: {
         default: '#F9FAFB',
