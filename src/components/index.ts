@@ -1,4 +1,5 @@
 export { ModalSkeleton } from './Modal';
+export { ErrorDisplay } from './Error';
 
 export { CustomModal } from './Modal';
 
