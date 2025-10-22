@@ -23,6 +23,7 @@ export const Customer = () => {
             flex={2}
             sx={{
                 ...theme.mixins.BoxStyle(theme.typography.pxToRem(16)),
+                maxHeight: theme.typography.pxToRem(450),
 
                 [theme.breakpoints.up('md')]: {
                     ...theme.mixins.BoxStyle(theme.typography.pxToRem(24)),
