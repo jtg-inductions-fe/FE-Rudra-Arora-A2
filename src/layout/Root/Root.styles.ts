@@ -1,6 +1,6 @@
-import { Stack, styled } from '@mui/material';
+import { BoxProps, Stack, styled } from '@mui/material';
 
-export const StyledStack = styled(Stack)(
+export const StyledStack = styled(Stack)<BoxProps>(
     ({ theme: { breakpoints, spacing, palette } }) => ({
         flexGrow: 1,
         overflow: 'auto',

@@ -44,7 +44,7 @@ export const Root = () => {
     };
 
     return (
-        <Box display="flex" sx={{ flexWrap: 'wrap' }}>
+        <>
             <Header handleDrawerToggle={handleDrawerToggle} />
             <Box display="flex" width="100%">
                 <Sidebar
@@ -52,10 +52,10 @@ export const Root = () => {
                     handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                     mobileSidebarOpen={mobileSidebarOpen}
                 />
-                <StyledStack>
+                <StyledStack component="main">
                     <Outlet />
                 </StyledStack>
             </Box>
-        </Box>
+        </>
     );
 };

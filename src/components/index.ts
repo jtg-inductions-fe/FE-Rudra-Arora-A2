@@ -1,6 +1,7 @@
 export { AvatarSkeleton } from './Avatar';
 
 export { AvatarComponent } from './Avatar';
+export { QuiltedImageList } from './ImageList';
 
 export { ErrorDisplay } from './Error';
 export { Menu } from './Menu';
