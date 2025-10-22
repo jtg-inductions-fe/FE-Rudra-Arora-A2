@@ -5,6 +5,7 @@ export { AvatarSkeleton } from './Avatar';
 export { AvatarComponent } from './Avatar';
 export { QuiltedImageList } from './ImageList';
 export { InfoList } from './InfoList';
+export { CustomTable } from './CustomTable';
 
 export { ErrorDisplay } from './Error';
 export { Menu } from './Menu';

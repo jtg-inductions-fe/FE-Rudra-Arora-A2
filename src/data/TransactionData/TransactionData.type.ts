@@ -1,6 +1,6 @@
 export interface TransactionType {
     personName: string;
-    date: string;
+    date: Date;
     amount: number;
     status: string;
 }

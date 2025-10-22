@@ -15,6 +15,7 @@ export const palette: PaletteOptions = {
     info: {
         main: '#E1EFFE',
         contrastText: '#1E429F',
+        light: '#71717A',
     },
     success: {
         main: '#DEF7EC',
