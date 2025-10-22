@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import TableSkeleton from '@assets/images/table-skeleton.webp';
 import { CustomTable } from '@components';
@@ -6,13 +6,10 @@ import { useTransactionData } from '@hooks';
 
 export const Transaction = () => {
     const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
-    const labelFormatter = (
-        name: string,
-        status: string,
-        amount: number,
-    ): string =>
-        `${status === 'Cancelled' ? 'Payment failed from' : amount < 0 ? 'Payment refund to' : 'Payment From'} ${name}`;
+    const labelFormatter = (status: string, amount: number): string =>
+        `${status === 'Cancelled' ? 'Payment failed from' : amount < 0 ? 'Payment refund to' : 'Payment From'}`;
 
     const dateFormatter = (date: Date): string =>
         `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}, ${date.getFullYear()}`;
@@ -20,13 +17,15 @@ export const Transaction = () => {
     const TransactionResponse = useTransactionData();
     const TransactionData =
         TransactionResponse.data?.map((item) => ({
-            label: labelFormatter(item.personName, item.status, item.amount),
+            label: labelFormatter(item.status, item.amount),
             date: dateFormatter(item.date),
             amount: `${item.amount < 0 ? '-' : ''}$${Math.abs(item.amount)}`,
             status: item.status,
+            name: item.personName,
         })) ?? [];
 
     const CustomColumn = ['TRANSACTION', 'DATE & TIME', 'AMOUNT', 'STATUS'];
+    const visibleColumn = isDesktop ? CustomColumn : CustomColumn.slice(0, 2);
 
     return (
         <Stack
@@ -46,7 +45,7 @@ export const Transaction = () => {
             ) : (
                 <CustomTable
                     data={TransactionData}
-                    visibleColumn={CustomColumn}
+                    visibleColumn={visibleColumn}
                 />
             )}
         </Stack>

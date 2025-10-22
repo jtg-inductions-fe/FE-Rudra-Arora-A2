@@ -1,5 +1,6 @@
 type CustomTableRowType = {
     label: string;
+    name: string;
     date: string;
     amount: string;
     status: string;
