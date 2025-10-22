@@ -1,16 +1,21 @@
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import {
+    Chip,
+    Table,
+    TableBody,
+    TableCell,
+    tableCellClasses,
+    TableContainer,
+    TableHead,
+    TableRow,
+} from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+
+import { CustomTableProps } from './CustomTable.types';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white,
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.secondary,
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 14,
@@ -18,65 +23,61 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
+    '&:nth-of-type(even)': {
+        backgroundColor: theme.palette.background.default,
     },
     '&:last-child td, &:last-child th': {
         border: 0,
     },
 }));
 
-function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number,
-) {
-    return { name, calories, fat, carbs, protein };
-}
+export const CustomTable = ({ data, visibleColumn }: CustomTableProps) => {
+    const theme = useTheme();
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export const CustomTable = () => (
-    <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-                <TableRow>
-                    <StyledTableCell>Dessert</StyledTableCell>
-                    <StyledTableCell align="right">Calories</StyledTableCell>
-                    <StyledTableCell align="right">Fat</StyledTableCell>
-                    <StyledTableCell align="right">Carbs</StyledTableCell>
-                    <StyledTableCell align="right">Protein</StyledTableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {rows.map((row) => (
-                    <StyledTableRow key={row.name}>
-                        <StyledTableCell component="th" scope="row">
-                            {row.name}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                            {row.calories}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                            {row.fat}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                            {row.carbs}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">
-                            {row.protein}
-                        </StyledTableCell>
+    return (
+        <TableContainer>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                    <StyledTableRow
+                        sx={{
+                            borderBottom: `${theme.typography.pxToRem(1)} solid ${theme.palette.divider}`,
+                        }}
+                    >
+                        {visibleColumn.map((item) => (
+                            <StyledTableCell key={item}>{item}</StyledTableCell>
+                        ))}
                     </StyledTableRow>
-                ))}
-            </TableBody>
-        </Table>
-    </TableContainer>
-);
+                </TableHead>
+                <TableBody>
+                    {data.map((row) => (
+                        <StyledTableRow key={row.date}>
+                            <StyledTableCell component="th" scope="row">
+                                {row.label}
+                            </StyledTableCell>
+                            <StyledTableCell
+                                sx={{ color: theme.palette.text.secondary }}
+                            >
+                                {row.date}
+                            </StyledTableCell>
+                            <StyledTableCell>{row.amount}</StyledTableCell>
+                            <StyledTableCell>
+                                <Chip
+                                    size="small"
+                                    sx={{ width: theme.typography.pxToRem(90) }}
+                                    color={
+                                        row.status === 'Cancelled'
+                                            ? 'error'
+                                            : row.status === 'Completed'
+                                              ? 'success'
+                                              : 'info'
+                                    }
+                                    label={row.status}
+                                />
+                            </StyledTableCell>
+                        </StyledTableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
+};
