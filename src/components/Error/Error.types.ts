@@ -1,10 +1,14 @@
-import { ElementType } from 'react';
-
-export type ErrorProps = {
+export type ErrorDisplayProps = {
     image: string;
     title: string;
     body: string;
-    buttonText: string;
-    to?: string;
-    buttonComponent: ElementType;
-};
+} & (
+    | {
+          buttonText: string;
+          to: string;
+      }
+    | {
+          buttonText?: never;
+          to?: never;
+      }
+);

@@ -1,20 +1,15 @@
-import { Link } from 'react-router-dom';
-
-import { Box } from '@mui/material';
-
 import notFoundImage from '@assets/images/404.webp';
-import { ErrorPage } from '@components';
+import { ErrorDisplay } from '@components';
 import { ROUTES } from '@routes';
 
+import { NotFoundConstants } from './NotFound.constants';
+
 export const NotFound = () => (
-    <Box sx={{ mt: 16 }}>
-        <ErrorPage
-            image={notFoundImage}
-            title="Page not found"
-            body="Oops! Looks like you followed a bad link. If you think this is a problem with us, please tell us."
-            buttonText="Go Home"
-            buttonComponent={Link}
-            to={ROUTES.ROOT}
-        />
-    </Box>
+    <ErrorDisplay
+        image={notFoundImage}
+        title={NotFoundConstants.TITLE}
+        body={NotFoundConstants.BODY}
+        buttonText={NotFoundConstants.BUTTON_TEXT}
+        to={ROUTES.ROOT}
+    />
 );

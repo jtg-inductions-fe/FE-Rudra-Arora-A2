@@ -1,22 +1,19 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-import { StyledBox } from './Error.styles';
-import { ErrorProps } from './Error.types';
+import { Button, Typography } from '@mui/material';
 
-export const ErrorPage = ({
+import { StyledBox, StyledImage } from './Error.styles';
+import { ErrorDisplayProps } from './Error.types';
+
+export const ErrorDisplay = ({
     image,
     title,
     body,
     buttonText,
-    buttonComponent,
     to,
-}: ErrorProps) => (
+}: ErrorDisplayProps) => (
     <StyledBox>
-        <Box
-            component="img"
-            src={image}
-            sx={{ maxWidth: '100%', pointerEvents: 'none' }}
-        />
+        <StyledImage src={image} alt={title} />
 
         <Typography variant="h1">{title}</Typography>
 
@@ -28,8 +25,10 @@ export const ErrorPage = ({
             {body}
         </Typography>
 
-        <Button variant="contained" component={buttonComponent} to={to}>
-            {buttonText}
-        </Button>
+        {buttonText && (
+            <Button variant="contained" component={Link} to={to}>
+                {buttonText}
+            </Button>
+        )}
     </StyledBox>
 );

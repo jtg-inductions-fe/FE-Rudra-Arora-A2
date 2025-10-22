@@ -1,3 +1,3 @@
-export { ErrorBoundary } from './ErrorBoundary';
+export { ErrorPage } from './ErrorPage';
 
 export { NotFound } from './NotFound';
