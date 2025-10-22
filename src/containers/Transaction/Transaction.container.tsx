@@ -9,7 +9,7 @@ export const Transaction = () => {
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     const labelFormatter = (status: string, amount: number): string =>
-        `${status === 'Cancelled' ? 'Payment failed from' : amount < 0 ? 'Payment refund to' : 'Payment From'}`;
+        `${status === 'Cancelled' ? 'Payment failed from' : amount < 0 ? 'Payment refund to' : 'Payment from'}`;
 
     const dateFormatter = (date: Date): string =>
         `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}, ${date.getFullYear()}`;
@@ -31,6 +31,9 @@ export const Transaction = () => {
         <Stack
             sx={{
                 ...theme.mixins.BoxStyle(4),
+                maxHeight: isDesktop
+                    ? theme.typography.pxToRem(500)
+                    : theme.typography.pxToRem(600),
             }}
         >
             <Stack pb={4}>
