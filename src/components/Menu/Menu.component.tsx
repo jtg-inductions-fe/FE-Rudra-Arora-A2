@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -10,65 +10,82 @@ import {
     Collapse,
     Divider,
     List,
+    ListItem,
     ListItemText,
     useTheme,
 } from '@mui/material';
 
 import { StyledListItemButton } from './Menu.styles';
-import { MenuProps } from './Menu.types';
+import { MenuProps, RecursiveMenuProps } from './Menu.types';
 
-export const Menu = ({ Config }: MenuProps) => {
-    const [openKeys, setOpenKeys] = useState<string[]>([]);
+export const Menu = ({ config }: MenuProps) => {
+    /**
+     * State for handling nested submenu
+     */
+    const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
     const theme = useTheme();
 
     const handleClick = (key: string) => {
-        setOpenKeys((prev) =>
-            prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key],
-        );
+        setOpenKeys((prev) => {
+            const temp = new Set(prev);
+            if (temp.has(key)) {
+                temp.delete(key);
+            } else {
+                temp.add(key);
+            }
+            return temp;
+        });
     };
 
-    const RecursiveMenuItems = (
-        items: MenuProps['Config'][number],
-        prefix = '',
-    ) =>
+    /**
+     *
+     * Recursive JSX component for handling nested list
+     * @returns JSX component
+     */
+    const RecursiveMenuItems = ({ items, prefix }: RecursiveMenuProps) =>
         items.map((item, index) => {
             const key = `${prefix} - ${index}`;
             const hasChildren = item.children?.length;
-            const isOpen = openKeys.includes(key);
+            const isOpen = openKeys.has(key);
 
             return (
                 <React.Fragment key={key}>
-                    <StyledListItemButton
-                        onClick={() => {
-                            if (hasChildren) handleClick(key);
-                        }}
-                        component={!hasChildren ? RouterLink : 'button'}
-                        to={!hasChildren ? item.route : undefined}
-                    >
-                        {item.icon && <item.icon />}
+                    <ListItem disablePadding>
+                        <StyledListItemButton
+                            component={hasChildren ? 'button' : Link}
+                            {...(hasChildren
+                                ? { onClick: () => handleClick(key) }
+                                : { to: item.route })}
+                        >
+                            {item.icon && <item.icon />}
 
-                        <ListItemText primary={item.title} />
-                        {hasChildren &&
-                            (isOpen ? <ExpandLess /> : <ExpandMore />)}
+                            <ListItemText primary={item.title} />
+                            {hasChildren &&
+                                (isOpen ? <ExpandLess /> : <ExpandMore />)}
 
-                        {item.count && (
-                            <Chip
-                                label={item.count}
-                                color="error"
-                                size="small"
-                            />
-                        )}
-                    </StyledListItemButton>
+                            {item.count && (
+                                <Chip
+                                    label={item.count}
+                                    color="error"
+                                    size="small"
+                                />
+                            )}
+                        </StyledListItemButton>
+                    </ListItem>
 
                     {hasChildren && (
                         <Collapse in={isOpen} timeout="auto" unmountOnExit>
                             <List
                                 component="div"
                                 disablePadding
-                                sx={{ ml: theme.spacing(14) }}
+                                sx={{ ml: theme.spacing(10) }}
                             >
-                                {item.children &&
-                                    RecursiveMenuItems(item.children, key)}
+                                {item.children && (
+                                    <RecursiveMenuItems
+                                        items={item.children}
+                                        prefix={key}
+                                    />
+                                )}
                             </List>
                         </Collapse>
                     )}
@@ -78,10 +95,15 @@ export const Menu = ({ Config }: MenuProps) => {
 
     return (
         <List aria-label="nested-list-sidebar">
-            {Config.map((section, sectionIndex) => (
+            {config.map((section, sectionIndex) => (
                 <Box key={sectionIndex}>
                     {sectionIndex > 0 && <Divider />}
-                    {RecursiveMenuItems(section, `s${sectionIndex}`)}
+                    {
+                        <RecursiveMenuItems
+                            items={section}
+                            prefix={`s${sectionIndex}`}
+                        />
+                    }
                 </Box>
             ))}
         </List>

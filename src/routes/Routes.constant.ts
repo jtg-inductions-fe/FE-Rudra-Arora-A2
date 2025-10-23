@@ -7,9 +7,12 @@ export const ROUTES = {
     DOCS: '/docs',
     COMPONENTS: '/components',
     HELP: '/help',
+    PAGES: '/pages/url',
 
     LOGIN: '/login',
     SIGN_UP: '/signup',
+    AUTH: '/auth/url',
+    SALES: '/sales/url',
 
     PRODUCTS: '/products',
     PRODUCT_LIST: '/products/list',

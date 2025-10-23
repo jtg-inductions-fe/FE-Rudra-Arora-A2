@@ -1,3 +1,3 @@
-export { ModalSkeleton } from './Modal.skeleton';
-
 export { CustomModal } from './Modal.component';
+
+export type { ModalProps } from './Modal.types';

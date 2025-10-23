@@ -1,11 +1,20 @@
 import { AppBar, Box, IconButton, styled } from '@mui/material';
 
-export const StyledAppBar = styled(AppBar)(({ theme: { palette } }) => ({
-    width: '100%',
-    position: 'fixed',
-    background: palette.secondary.main,
-    boxShadow: 'none',
-}));
+import { HeaderConstants } from './Header.constants';
+
+export const StyledAppBar = styled(AppBar)(
+    ({ theme: { palette, typography, breakpoints } }) => ({
+        width: '100%',
+        position: 'fixed',
+        background: palette.secondary.main,
+        boxShadow: 'none',
+        height: typography.pxToRem(HeaderConstants.Header_Height_sm),
+
+        [breakpoints.up('md')]: {
+            height: typography.pxToRem(HeaderConstants.Header_Height_lg),
+        },
+    }),
+);
 
 export const HeaderBox = styled(Box)(({ theme: { spacing, mixins } }) => ({
     ...mixins.flex('flex-start', 'stretch', spacing(8)),

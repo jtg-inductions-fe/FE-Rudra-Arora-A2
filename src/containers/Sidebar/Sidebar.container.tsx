@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
 
-import PublicIcon from '@mui/icons-material/Public';
-import SettingsIcon from '@mui/icons-material/Settings';
-import TuneIcon from '@mui/icons-material/Tune';
-import { IconButton, Stack, useMediaQuery, useTheme } from '@mui/material';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
+import { Box, IconButton, Stack, useMediaQuery, useTheme } from '@mui/material';
 
 import { Menu } from '@components';
-import { ROUTES } from '@routes';
 
 import { sidebarConfig } from './Sidebar.config';
+import {
+    PermanentDrawer,
+    SidebarStack,
+    TemporaryDrawer,
+} from './Sidebar.styles';
 import { SidebarProps } from './Sidebar.types';
 
 export const Sidebar = ({
@@ -20,83 +19,55 @@ export const Sidebar = ({
 }: SidebarProps) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
-    const isTablet = useMediaQuery(theme.breakpoints.up('sm'));
-    const drawerWidth = !isDesktop
-        ? theme.typography.pxToRem(300)
-        : theme.typography.pxToRem(250);
 
     const drawer = (
-        <Stack justifyContent="space-between" height={'90vh'}>
-            <Menu Config={sidebarConfig} />
-            <Box sx={{ textAlign: 'center' }}>
-                <IconButton
-                    color="inherit"
-                    sx={{ transform: 'rotate(90deg)' }}
-                    aria-label="tune filters"
-                    component={Link}
-                    to={ROUTES.TUNE}
-                >
-                    <TuneIcon />
-                </IconButton>
-
-                <IconButton
-                    color="inherit"
-                    aria-label="change language"
-                    component={Link}
-                    to={ROUTES.PUBLIC}
-                >
-                    <PublicIcon />
-                </IconButton>
-
-                <IconButton
-                    color="inherit"
-                    aria-label="open settings"
-                    component={Link}
-                    to={ROUTES.SETTINGS}
-                >
-                    <SettingsIcon />
-                </IconButton>
+        <SidebarStack justifyContent="space-between">
+            <Box sx={{ overflowY: 'auto' }}>
+                <Menu config={sidebarConfig.navHeader} />
             </Box>
-        </Stack>
+            <Stack
+                flexDirection="row"
+                justifyContent="center"
+                gap={theme.typography.pxToRem(22)}
+                padding={theme.spacing(4, 0)}
+            >
+                {sidebarConfig.navFooter.map((item) => (
+                    <IconButton
+                        color="inherit"
+                        key={item.title}
+                        sx={{ transform: 'rotate(90deg)', p: 0 }}
+                        aria-label="Navbar Footer Icons"
+                        component={Link}
+                        to={item.route ?? ''}
+                    >
+                        {item.icon && <item.icon />}
+                    </IconButton>
+                ))}
+            </Stack>
+        </SidebarStack>
     );
 
     return (
         <Box component="nav" aria-label="primary navigation">
-            {!isDesktop ? (
-                <Drawer
+            {isDesktop ? (
+                <PermanentDrawer
+                    variant="permanent"
+                    PaperProps={{ id: 'sidebar-drawer' }}
+                    open
+                >
+                    {drawer}
+                </PermanentDrawer>
+            ) : (
+                <TemporaryDrawer
                     variant="temporary"
                     open={mobileSidebarOpen}
                     onTransitionEnd={handleDrawerTransitionEnd}
                     onClose={handleDrawerClose}
                     ModalProps={{ keepMounted: true }}
                     PaperProps={{ id: 'sidebar-drawer' }}
-                    sx={{
-                        '& .MuiDrawer-paper': {
-                            boxSizing: 'border-box',
-                            width: drawerWidth,
-                            marginTop: !isTablet
-                                ? theme.typography.pxToRem(53)
-                                : theme.typography.pxToRem(65),
-                        },
-                    }}
                 >
                     {drawer}
-                </Drawer>
-            ) : (
-                <Drawer
-                    variant="permanent"
-                    PaperProps={{ id: 'sidebar-drawer' }}
-                    sx={{
-                        '& .MuiDrawer-paper': {
-                            boxSizing: 'border-box',
-                            width: drawerWidth,
-                            marginTop: theme.typography.pxToRem(65),
-                        },
-                    }}
-                    open
-                >
-                    {drawer}
-                </Drawer>
+                </TemporaryDrawer>
             )}
         </Box>
     );

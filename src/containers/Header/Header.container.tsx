@@ -1,5 +1,3 @@
-import { MouseEvent, useState } from 'react';
-
 import { Link, useNavigate } from 'react-router-dom';
 
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
@@ -14,7 +12,7 @@ import {
 } from '@mui/material';
 
 import logo from '@assets/images/Logo.webp';
-import { CustomModal, ModalSkeleton, SearchBar } from '@components';
+import { AvatarComponent, AvatarSkeleton, SearchBar } from '@components';
 import { useProductsData, useUserData } from '@hooks';
 import { ROUTES } from '@routes';
 
@@ -31,8 +29,6 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
     const productResponse = useProductsData();
 
     const searchItems =
@@ -40,12 +36,10 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
 
     const userResponse = useUserData();
 
-    const handleModalOpen = (event: MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleModalClose = () => {
-        setAnchorEl(null);
+    const userData = userResponse.data && {
+        userName: userResponse.data.userName,
+        userImage: userResponse.data.userImage,
+        userEmail: userResponse.data.userEmail,
     };
 
     const handleSearchChange = (label: string) => {
@@ -56,7 +50,9 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
     return (
         <>
             <StyledAppBar sx={{ zIndex: theme.zIndex.drawer + 1 }}>
-                <Toolbar sx={{ justifyContent: 'space-between' }}>
+                <Toolbar
+                    sx={{ justifyContent: 'space-between', height: '100%' }}
+                >
                     {!isDesktop ? (
                         <StyledIconButton
                             aria-label="open drawer"
@@ -101,43 +97,19 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
                             />
                         </IconButton>
 
-                        <IconButton
-                            onClick={(event) => void handleModalOpen(event)}
-                            sx={{ p: 0 }}
-                        >
-                            <Avatar
-                                src={userResponse.data?.userImage}
-                                alt="profile image"
-                                sx={{
-                                    height: '100%',
-                                    width: theme.typography.pxToRem(32),
-                                }}
+                        {userData ? (
+                            <AvatarComponent
+                                data={userData}
+                                buttonText="Manage Profile"
+                                buttonRoute={ROUTES.MANAGE_PROFILE}
                             />
-                        </IconButton>
+                        ) : (
+                            <AvatarSkeleton />
+                        )}
                     </ToolbarBox>
                 </Toolbar>
                 <Divider />
             </StyledAppBar>
-
-            {!userResponse.data ? (
-                <ModalSkeleton
-                    anchorEl={anchorEl}
-                    handleModalClose={handleModalClose}
-                />
-            ) : (
-                <CustomModal
-                    anchorEl={anchorEl}
-                    handleModalClose={handleModalClose}
-                    userName={userResponse.data.userName}
-                    userEmail={userResponse.data.userEmail}
-                    userImage={userResponse.data.userImage}
-                    buttonText="Manage Profile"
-                    onButtonClick={() => {
-                        void navigate(ROUTES.MANAGE_PROFILE);
-                        void handleModalClose();
-                    }}
-                />
-            )}
         </>
     );
 };
