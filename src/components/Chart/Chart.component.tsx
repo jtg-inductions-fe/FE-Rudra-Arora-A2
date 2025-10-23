@@ -14,7 +14,12 @@ import skeleton from '@assets/images/skeleton_chart.webp';
 
 import { ChartProps } from './Chart.types';
 
-export const Chart = ({ chartData, months, loadingChartData }: ChartProps) => {
+export const Chart = ({
+    chartData,
+    loadingChartData,
+    xAxisTickFormatter,
+    yAxisTickFormatter,
+}: ChartProps) => {
     const theme = useTheme();
 
     const isLargeScreen = useMediaQuery(theme.breakpoints.up('sm'));
@@ -26,26 +31,44 @@ export const Chart = ({ chartData, months, loadingChartData }: ChartProps) => {
                     <CartesianGrid vertical={false} />
                     <XAxis
                         dataKey="date"
-                        padding={{ left: 60, right: 60 }}
+                        padding={{
+                            left: isLargeScreen ? 60 : 20,
+                            right: isLargeScreen ? 60 : 40,
+                        }}
                         tickLine={false}
                         axisLine={false}
-                        tickFormatter={(value: string) =>
-                            `${value.slice(8, 10)} ${months[Number(value.slice(6, 7)) - 1]}`
-                        }
                         angle={isLargeScreen ? 0 : -40}
                         dy={20}
                         minTickGap={20}
+                        tickFormatter={xAxisTickFormatter}
                     />
                     <YAxis
                         dx={-12}
                         axisLine={false}
                         hide={isLargeScreen ? false : true}
                         tickLine={false}
-                        tickFormatter={(value) =>
-                            `${(value / 1000).toFixed(0)}K`
-                        }
+                        tickFormatter={yAxisTickFormatter}
                     />
-                    <Tooltip />
+                    <Tooltip
+                        formatter={(value: string, name: string) => [
+                            `${(Number(value) / 1000).toFixed(0)}K`,
+                            name,
+                        ]}
+                        labelFormatter={(_, payload) => {
+                            const date = (
+                                payload?.[0]?.payload as { date: Date }
+                            ).date;
+                            return `${date.getDate()} ${date.toLocaleString('default', { month: 'short' })}, ${date.getFullYear()}`;
+                        }}
+                        contentStyle={{
+                            borderRadius: 12,
+                            boxShadow: theme.shadows[1],
+                        }}
+                        labelStyle={{
+                            color: theme.palette.text.secondary,
+                            fontSize: theme.typography.pxToRem(12),
+                        }}
+                    />
                     <Line
                         type="monotone"
                         dataKey="sales"

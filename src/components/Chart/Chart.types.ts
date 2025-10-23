@@ -2,6 +2,7 @@ import { ChartDataType } from '@data';
 
 export type ChartProps = {
     chartData: ChartDataType[];
-    months: string[];
     loadingChartData: boolean;
+    xAxisTickFormatter: (value: Date) => string;
+    yAxisTickFormatter: (value: number) => string;
 };

@@ -1,4 +1,4 @@
 export type SalesDataType = {
-    date: string;
+    date: Date;
     sales: number;
 };
