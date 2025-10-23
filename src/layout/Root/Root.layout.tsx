@@ -6,8 +6,6 @@ import { Box } from '@mui/material';
 
 import { Header, Sidebar } from '@containers';
 
-import { StyledStack } from './Root.styles';
-
 export const Root = () => {
     /**
      * State for the sidebar open and close
@@ -44,7 +42,7 @@ export const Root = () => {
     };
 
     return (
-        <>
+        <Box display="flex" sx={{ flexWrap: 'wrap' }}>
             <Header handleDrawerToggle={handleDrawerToggle} />
             <Box display="flex" width="100%">
                 <Sidebar
@@ -52,10 +50,10 @@ export const Root = () => {
                     handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                     mobileSidebarOpen={mobileSidebarOpen}
                 />
-                <StyledStack component="main">
+                <Box component="main" sx={{ flexGrow: 1, overflow: 'auto' }}>
                     <Outlet />
-                </StyledStack>
+                </Box>
             </Box>
-        </>
+        </Box>
     );
 };

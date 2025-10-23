@@ -1,7 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { Main } from '@containers';
 import { Root } from '@layout';
-import { ErrorPage, Main, NotFound } from '@pages';
+import { ErrorPage, NotFound } from '@pages';
 
 import { ROUTES } from './Routes.constant';
 
