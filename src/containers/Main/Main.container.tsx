@@ -1,7 +1,6 @@
 import { Stack, useTheme } from '@mui/material';
 
-import { QuiltedImageList } from '@components';
-import { HeroData } from '@data';
+import { Hero } from './Hero';
 
 export const Main = () => {
     const theme = useTheme();
@@ -16,7 +15,7 @@ export const Main = () => {
                 },
             }}
         >
-            <QuiltedImageList Data={HeroData} />
+            <Hero />
         </Stack>
     );
 };

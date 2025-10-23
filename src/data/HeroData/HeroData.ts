@@ -1,3 +1,3 @@
-import data from './HeroData.json';
+import { jsonData } from './HeroData.json';
 
-export const HeroData = data;
+export const HeroData = jsonData;
