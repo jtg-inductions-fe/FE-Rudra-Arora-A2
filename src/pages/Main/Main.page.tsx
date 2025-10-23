@@ -1,6 +1,6 @@
 import { Stack, useTheme } from '@mui/material';
 
-import { Hero } from './Hero';
+import { Hero } from '@containers';
 
 export const Main = () => {
     const theme = useTheme();

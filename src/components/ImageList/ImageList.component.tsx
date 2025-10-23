@@ -4,16 +4,7 @@ import { ImageListConstants } from './ImageList.constants';
 import { StyledImageList } from './ImageList.styles';
 import { ImageListProps } from './ImageList.types';
 
-function srcset(image: string, size: number, rows = 1, cols = 1) {
-    return {
-        src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-        srcSet: `${image}?w=${size * cols}&h=${
-            size * rows
-        }&fit=crop&auto=format&dpr=2 2x`,
-    };
-}
-
-export const QuiltedImageList = ({ Data }: ImageListProps) => {
+export const QuiltedImageList = ({ data }: ImageListProps) => {
     const theme = useTheme();
 
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
@@ -25,17 +16,13 @@ export const QuiltedImageList = ({ Data }: ImageListProps) => {
             rowHeight={!isDesktop ? 115 : 130}
             gap={isDesktop ? 40 : 20}
         >
-            {Data.map((item) => (
+            {data.map((item) => (
                 <ImageListItem
                     key={item.img}
                     cols={!isDesktop ? item.cols_sm || 1 : item.cols_lg || 1}
                     rows={!isDesktop ? item.rows_sm || 1 : item.rows_lg || 1}
                 >
-                    <img
-                        {...srcset(item.img, 160)}
-                        alt={item.title}
-                        loading="lazy"
-                    />
+                    <img src={item.img} alt={item.title} loading="lazy" />
                 </ImageListItem>
             ))}
         </StyledImageList>

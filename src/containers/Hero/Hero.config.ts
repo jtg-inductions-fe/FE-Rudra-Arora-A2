@@ -3,7 +3,7 @@ import hero_image_2 from '@assets/images/hero-image-2.webp';
 import hero_image_3 from '@assets/images/hero-image-3.webp';
 import hero_image_4 from '@assets/images/hero-image-4.webp';
 
-export const jsonData = [
+export const heroConfig = [
     {
         img: hero_image_1,
         title: 'hero-Image-1',
