@@ -7,31 +7,31 @@
     },
     {
         "customerName": "Bonnie Green",
-        "customerImage": "/images/customer2.png",
+        "customerImage": "/images/customer2.webp",
         "customerAmount": 67,
         "customerEmail": "bonnie@example.com"
     },
     {
         "customerName": "Michael Gough",
-        "customerImage": "/images/customer3.png",
+        "customerImage": "/images/customer3.webp",
         "customerAmount": 3467,
         "customerEmail": "michael@example.com"
     },
     {
         "customerName": "Thomas Lean",
-        "customerImage": "/images/customer4.png",
+        "customerImage": "/images/customer4.webp",
         "customerAmount": 2367,
         "customerEmail": "thomas@example.com"
     },
     {
         "customerName": "Lana Byrd",
-        "customerImage": "/images/customer5.png",
-        "customerAmount": 367,
+        "customerImage": "/images/customer5.webp",
+        "customerAmount": 370,
         "customerEmail": "lana@example.com"
     },
     {
         "customerName": "Karen Nelson",
-        "customerImage": "/images/customer6.png",
+        "customerImage": "/images/customer6.webp",
         "customerAmount": 1367,
         "customerEmail": "karen@example.com"
     }

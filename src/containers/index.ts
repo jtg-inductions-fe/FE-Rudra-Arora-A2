@@ -1,3 +1,6 @@
+export { Customer } from './Customer';
+export { Products } from './Products';
+
 export { Sales } from './Sales';
 
 export { Hero } from './Hero';

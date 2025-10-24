@@ -1,8 +1,8 @@
 import InfoIcon from '@mui/icons-material/Info';
-import { Box, Stack, Tooltip, Typography, useTheme } from '@mui/material';
+import { Box, Stack, Tooltip, useTheme } from '@mui/material';
 
 import skeleton from '@assets/images/skeleton_chart.webp';
-import { Chart } from '@components';
+import { Chart, Typography } from '@components';
 import { useSalesData } from '@hooks';
 
 import {
@@ -25,7 +25,9 @@ export const Sales = () => {
             }}
         >
             <Box sx={{ ...theme.mixins.flex('flex-start', 'center', '3px') }}>
-                <Typography variant="h2">Sales</Typography>
+                <Typography variant="h2" linesToClamp={1}>
+                    Sales
+                </Typography>
                 <Tooltip title="Sales Statistics" arrow placement="right">
                     <InfoIcon color="action" />
                 </Tooltip>

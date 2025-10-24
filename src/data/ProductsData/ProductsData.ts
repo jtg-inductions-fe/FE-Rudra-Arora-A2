@@ -1,4 +1,4 @@
 import data from './ProductsData.json';
-import type { ProductsType } from './ProductsData.type';
+import type { ProductsDataType } from './ProductsData.type';
 
-export const ProductsData: ProductsType[] = data;
+export const ProductsData: ProductsDataType[] = data;

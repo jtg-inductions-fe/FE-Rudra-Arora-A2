@@ -1,2 +1,2 @@
 export { ProductsData } from './ProductsData';
-export type { ProductsType } from './ProductsData.type';
+export type { ProductsDataType } from './ProductsData.type';

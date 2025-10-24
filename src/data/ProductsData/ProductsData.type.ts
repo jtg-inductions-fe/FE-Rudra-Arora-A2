@@ -1,4 +1,4 @@
-export interface ProductsType {
+export interface ProductsDataType {
     productName: string;
     technologyStack: string;
     sales: number;

@@ -1,9 +1,9 @@
-import { ProductsData, ProductsType } from '@data';
+import { ProductsData, ProductsDataType } from '@data';
 
 import { useDataReducer } from '../useDataReducer';
 
 export const useProductsData = () => {
-    const state = useDataReducer<ProductsType[]>(ProductsData);
+    const state = useDataReducer<ProductsDataType[]>(ProductsData);
 
     return state;
 };
