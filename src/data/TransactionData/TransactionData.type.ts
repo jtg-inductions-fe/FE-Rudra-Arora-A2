@@ -1,6 +1,6 @@
-export interface TransactionType {
+export type TransactionDataType = {
     personName: string;
-    date: Date;
+    date: string;
     amount: number;
     status: string;
-}
+};

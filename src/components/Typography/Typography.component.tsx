@@ -9,7 +9,8 @@ export const Typography = ({
     textAlign,
     component,
     children,
-    tooltip = false,
+    showTooltip = false,
+    noWrap = false,
 }: CustomTypographyProps) => {
     const theme = useTheme();
 
@@ -20,12 +21,13 @@ export const Typography = ({
             variant={variant}
             color={color}
             textAlign={textAlign}
+            noWrap={noWrap}
         >
             {children}
         </MuiTypography>
     );
 
-    if (tooltip) {
+    if (showTooltip) {
         return (
             <Tooltip title={children} arrow placement="top-start">
                 {typographyElement}
