@@ -1,12 +1,14 @@
 export { AvatarSkeleton } from './Avatar';
 
 export { AvatarComponent } from './Avatar';
-export { QuiltedImageList } from './ImageList';
 
 export { ErrorDisplay } from './Error';
 export { Menu } from './Menu';
 
 export { CustomModal } from './Modal';
+export { Chart } from './Chart';
+
+export { QuiltedImageList } from './ImageList';
 
 export { Loader } from './Loader';
 
@@ -18,3 +20,4 @@ export type { ErrorDisplayProps } from './Error';
 export type { MenuProps } from './Menu';
 export type { ModalProps } from './Modal';
 export type { SearchBarProps } from './SearchBar';
+export type { ChartProps } from './Chart';

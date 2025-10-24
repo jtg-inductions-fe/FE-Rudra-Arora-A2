@@ -1,6 +1,6 @@
 import { Stack, useTheme } from '@mui/material';
 
-import { Hero } from '@containers';
+import { Hero, Sales } from '@containers';
 
 export const Main = () => {
     const theme = useTheme();
@@ -16,6 +16,7 @@ export const Main = () => {
             }}
         >
             <Hero />
+            <Sales />
         </Stack>
     );
 };
