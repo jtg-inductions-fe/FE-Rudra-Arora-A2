@@ -1,14 +1,8 @@
-import {
-    Avatar,
-    Box,
-    Button,
-    Popover,
-    Typography,
-    useTheme,
-} from '@mui/material';
+import { Avatar, Box, Button, Popover, useTheme } from '@mui/material';
 
 import { StyledPaper } from './Modal.styles';
 import type { ModalProps } from './Modal.types';
+import { Typography } from '../Typography';
 
 export const CustomModal = ({
     anchorEl,
@@ -47,8 +41,12 @@ export const CustomModal = ({
                 }}
             >
                 <Avatar src={userImage} alt="user image" />
-                <Typography variant="h2">{userName}</Typography>
-                <Typography variant="subtitle1">{userEmail}</Typography>
+                <Typography variant="h2" linesToClamp={1} tooltip>
+                    {userName}
+                </Typography>
+                <Typography variant="subtitle1" linesToClamp={1} tooltip>
+                    {userEmail}
+                </Typography>
 
                 {buttonText && (
                     <Button variant="contained" onClick={onButtonClick}>

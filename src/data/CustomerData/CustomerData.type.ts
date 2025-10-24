@@ -1,4 +1,4 @@
-export interface CustomerType {
+export interface CustomerDataType {
     customerName: string;
     customerImage: string;
     customerAmount: number;

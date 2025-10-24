@@ -1,15 +1,16 @@
+export { Typography } from './Typography';
+
 export { AvatarSkeleton } from './Avatar';
 
 export { AvatarComponent } from './Avatar';
 export { QuiltedImageList } from './ImageList';
-export { ReusableTable } from './ReusableTable';
+export { InfoList } from './InfoList';
 
 export { ErrorDisplay } from './Error';
 export { Menu } from './Menu';
 
 export { CustomModal } from './Modal';
 export { Chart } from './Chart';
-
 
 export { Loader } from './Loader';
 
@@ -22,3 +23,4 @@ export type { MenuProps } from './Menu';
 export type { ModalProps } from './Modal';
 export type { SearchBarProps } from './SearchBar';
 export type { ChartProps } from './Chart';
+export type { InfoListProps } from './InfoList';

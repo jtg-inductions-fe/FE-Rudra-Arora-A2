@@ -1,11 +1,11 @@
-type TableRowType = {
+type InfoListType = {
     label: string;
     caption: string;
     value: number;
     avatar?: string;
 };
 
-export type TableProps = {
-    data: TableRowType[];
+export type InfoListProps = {
+    data: InfoListType[];
     valueFormat: (value: number) => string | React.ReactNode;
 };

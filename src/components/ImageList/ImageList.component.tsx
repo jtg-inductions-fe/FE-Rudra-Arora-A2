@@ -15,7 +15,6 @@ export const QuiltedImageList = ({ data }: ImageListProps) => {
             cols={ImageListConstants.COLUMNS_NUMBER}
             rowHeight={!isDesktop ? 115 : 130}
             gap={isDesktop ? 40 : 20}
-            aria-hidden="true"
         >
             {data.map((item) => (
                 <ImageListItem
