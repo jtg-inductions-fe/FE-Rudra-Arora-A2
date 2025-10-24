@@ -5,7 +5,6 @@ export { TransactionData } from './TransactionData';
 export { SalesData } from './SalesData';
 
 export type { SalesDataType } from './SalesData';
-export type { ChartDataType } from './SalesData';
 export type { CustomerType } from './CustomerData';
 export type { ProductsType } from './ProductsData';
 export type { TransactionType } from './TransactionData';

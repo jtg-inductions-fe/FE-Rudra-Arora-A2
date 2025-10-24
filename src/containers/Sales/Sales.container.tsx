@@ -1,25 +1,26 @@
 import InfoIcon from '@mui/icons-material/Info';
 import { Box, Stack, Tooltip, Typography, useTheme } from '@mui/material';
 
+import skeleton from '@assets/images/skeleton_chart.webp';
 import { Chart } from '@components';
 import { useSalesData } from '@hooks';
 
+import {
+    formatTooltipLabel,
+    formatTooltipValue,
+    getData,
+    xAxisTickFormatter,
+    yAxisTickFormatter,
+} from './Sales.helpers';
+
 export const Sales = () => {
     const theme = useTheme();
-    const response = useSalesData();
-    const salesData = response.data ?? [];
-    const loadingSalesData = response.loading;
-
-    const xAxisTickFormatter = (value: Date): string =>
-        `${value.getDate()} ${value.toLocaleString('default', { month: 'short' })}`;
-
-    const yAxisTickFormatter = (value: number) =>
-        `${(value / 1000).toFixed(0)}K`;
+    const salesData = getData(useSalesData().data);
 
     return (
         <Stack
             sx={{
-                ...theme.mixins.BoxStyle(8),
+                ...theme.mixins.SectionContainerStyles(8),
                 gap: theme.spacing(7),
             }}
         >
@@ -29,12 +30,18 @@ export const Sales = () => {
                     <InfoIcon color="action" />
                 </Tooltip>
             </Box>
-            <Chart
-                chartData={salesData}
-                loadingChartData={loadingSalesData}
-                xAxisTickFormatter={xAxisTickFormatter}
-                yAxisTickFormatter={yAxisTickFormatter}
-            />
+            {salesData ? (
+                <Chart
+                    data={salesData}
+                    tooltipName="Sales"
+                    xAxisTickFormatter={xAxisTickFormatter}
+                    yAxisTickFormatter={yAxisTickFormatter}
+                    formatTooltipLabel={formatTooltipLabel}
+                    formatTooltipValue={formatTooltipValue}
+                />
+            ) : (
+                <Box component="img" src={skeleton} />
+            )}
         </Stack>
     );
 };

@@ -1,8 +1,11 @@
-import { ChartDataType } from '@data';
-
-export type ChartProps = {
-    chartData: ChartDataType[];
-    loadingChartData: boolean;
-    xAxisTickFormatter: (value: Date) => string;
-    yAxisTickFormatter: (value: number) => string;
+export type ChartProps<T, Z> = {
+    data: {
+        xAxis: T;
+        yAxis: Z;
+    }[];
+    tooltipName: string;
+    xAxisTickFormatter: (value: T) => string;
+    yAxisTickFormatter: (value: Z) => string;
+    formatTooltipLabel: (xAxisData: T) => string;
+    formatTooltipValue: (value: string, tooltipName: string) => string[];
 };

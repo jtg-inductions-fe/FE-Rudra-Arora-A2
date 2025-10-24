@@ -20,3 +20,4 @@ export type { ErrorDisplayProps } from './Error';
 export type { MenuProps } from './Menu';
 export type { ModalProps } from './Modal';
 export type { SearchBarProps } from './SearchBar';
+export type { ChartProps } from './Chart';

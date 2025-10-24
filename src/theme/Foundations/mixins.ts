@@ -3,7 +3,7 @@ import type {
     MixinsOptions,
 } from '@mui/material/styles/createMixins';
 
-import { theme } from '@theme';
+import { theme } from '../index';
 
 /**
  * Creates a CSS block for clamping text to a specified number of lines
@@ -40,7 +40,7 @@ const flex = (
     flexDirection: direction,
 });
 
-const BoxStyle = (
+const SectionContainerStyles = (
     padding: CSSProperties['padding'],
     borderRadius: CSSProperties['borderRadius'] = '16px',
     boxShadow: CSSProperties['boxShadow'] = theme.shadows[1],
@@ -57,5 +57,5 @@ export const mixins: MixinsOptions = {
     lineClamp,
     flex,
     flexCenter,
-    BoxStyle,
+    SectionContainerStyles,
 };
