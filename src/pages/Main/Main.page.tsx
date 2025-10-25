@@ -1,4 +1,11 @@
-import { Customer, Hero, Products, Sales, Transaction } from '@containers';
+import {
+    Customer,
+    Footer,
+    Hero,
+    Products,
+    Sales,
+    Transaction,
+} from '@containers';
 
 import { CustomerProductStack, StyledStack } from './Main.styles';
 
@@ -11,5 +18,6 @@ export const Main = () => (
             <Products />
         </CustomerProductStack>
         <Transaction />
+        <Footer />
     </StyledStack>
 );

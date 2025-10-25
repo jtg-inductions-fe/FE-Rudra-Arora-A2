@@ -1,3 +1,5 @@
+export { Footer } from './Footer';
+
 export { Transaction } from './Transaction';
 
 export { Customer } from './Customer';
