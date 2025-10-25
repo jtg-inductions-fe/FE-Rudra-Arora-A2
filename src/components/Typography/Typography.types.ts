@@ -2,8 +2,8 @@ import { TypographyProps } from '@mui/material';
 
 export type CustomTypographyProps = Pick<
     TypographyProps,
-    'variant' | 'color' | 'textAlign' | 'component' | 'children'
+    'variant' | 'color' | 'textAlign' | 'component' | 'children' | 'noWrap'
 > & {
-    tooltip?: boolean;
+    showTooltip?: boolean;
     linesToClamp?: number;
 };

@@ -41,10 +41,10 @@ export const CustomModal = ({
                 }}
             >
                 <Avatar src={userImage} alt="user image" />
-                <Typography variant="h2" linesToClamp={1} tooltip>
+                <Typography variant="h2" linesToClamp={1} showTooltip>
                     {userName}
                 </Typography>
-                <Typography variant="subtitle1" linesToClamp={1} tooltip>
+                <Typography variant="subtitle1" linesToClamp={1} showTooltip>
                     {userEmail}
                 </Typography>
 
