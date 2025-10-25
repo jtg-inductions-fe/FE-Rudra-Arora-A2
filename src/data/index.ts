@@ -7,5 +7,5 @@ export { SalesData } from './SalesData';
 export type { SalesDataType } from './SalesData';
 export type { CustomerDataType } from './CustomerData';
 export type { ProductsDataType } from './ProductsData';
-export type { TransactionType } from './TransactionData';
+export type { TransactionDataType } from './TransactionData';
 export type { UserDataType } from './UserData';

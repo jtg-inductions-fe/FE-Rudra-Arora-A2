@@ -5,7 +5,7 @@ export { AvatarSkeleton } from './Avatar';
 export { AvatarComponent } from './Avatar';
 export { QuiltedImageList } from './ImageList';
 export { InfoList } from './InfoList';
-export { CustomTable } from './CustomTable';
+export { Table } from './Table';
 
 export { ErrorDisplay } from './Error';
 export { Menu } from './Menu';
@@ -25,3 +25,4 @@ export type { ModalProps } from './Modal';
 export type { SearchBarProps } from './SearchBar';
 export type { ChartProps } from './Chart';
 export type { InfoListProps } from './InfoList';
+export type { TableProps, ColumnType } from './Table';
