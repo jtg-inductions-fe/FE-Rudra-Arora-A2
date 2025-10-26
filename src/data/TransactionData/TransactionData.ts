@@ -1,4 +1,4 @@
-import data from './TransactionData.json';
-import type { TransactionType } from './TransactionData.type';
+import Data from './TransactionData.json';
+import type { TransactionDataType } from './TransactionData.type';
 
-export const TransactionData: TransactionType[] = data;
+export const TransactionData: TransactionDataType[] = Data;

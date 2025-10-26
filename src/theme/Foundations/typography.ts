@@ -66,6 +66,12 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
         lineHeight: typographyUtil.pxToRem(24),
     },
 
+    body2: {
+        fontSize: typographyUtil.pxToRem(14),
+        fontWeight: 400,
+        lineHeight: typographyUtil.pxToRem(20),
+    },
+
     button: {
         fontWeight: 600,
         fontSize: typographyUtil.pxToRem(14),

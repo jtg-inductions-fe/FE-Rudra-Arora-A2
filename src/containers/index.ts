@@ -1,3 +1,5 @@
+export { Transaction } from './Transaction';
+
 export { Customer } from './Customer';
 export { Products } from './Products';
 

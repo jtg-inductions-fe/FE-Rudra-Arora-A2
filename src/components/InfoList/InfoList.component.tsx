@@ -23,7 +23,7 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                     disableTypography
                     sx={{ margin: 0 }}
                     primary={
-                        <Typography variant="h4" linesToClamp={1} tooltip>
+                        <Typography variant="h4" linesToClamp={1} showTooltip>
                             {item.label}
                         </Typography>
                     }
@@ -32,7 +32,7 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                             variant="subtitle2"
                             linesToClamp={1}
                             color="textSecondary"
-                            tooltip
+                            showTooltip
                         >
                             {item.caption}
                         </Typography>
@@ -43,6 +43,8 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                     variant="h4"
                     textAlign="right"
                     aria-label={`${item.label}: ${item.value}`}
+                    showTooltip
+                    linesToClamp={1}
                 >
                     {valueFormat(item.value)}
                 </Typography>
