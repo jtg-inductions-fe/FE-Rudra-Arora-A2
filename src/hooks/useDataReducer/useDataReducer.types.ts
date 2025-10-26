@@ -1,8 +1,8 @@
-export interface StateType<T> {
+export type StateType<T> = {
     data: T | null;
     loading: boolean;
     error: Error | null;
-}
+};
 
 export type ActionType<T> =
     | { type: 'FETCH_START' }

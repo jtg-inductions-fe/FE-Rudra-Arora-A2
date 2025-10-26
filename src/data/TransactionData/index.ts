@@ -1,2 +1,2 @@
 export { TransactionData } from './TransactionData';
-export type { TransactionType } from './TransactionData.type';
+export type { TransactionDataType } from './TransactionData.type';
