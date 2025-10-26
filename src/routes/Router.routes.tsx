@@ -1,9 +1,14 @@
+import { lazy, Suspense } from 'react';
+
 import { createBrowserRouter } from 'react-router-dom';
 
+import { Loader } from '@components';
 import { Root } from '@layout';
-import { ErrorPage, Main, NotFound } from '@pages';
+import { ErrorPage, NotFound } from '@pages';
 
 import { ROUTES } from './Routes.constant';
+
+const Main = lazy(() => import('../pages/Main/Main.page'));
 
 export const router = createBrowserRouter([
     {
@@ -13,7 +18,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Main />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Main />
+                    </Suspense>
+                ),
             },
 
             { path: ROUTES.MESSAGES, element: <NotFound /> },

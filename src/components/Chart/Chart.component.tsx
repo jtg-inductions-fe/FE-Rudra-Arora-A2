@@ -1,3 +1,4 @@
+import { CustomTooltip } from 'components/CustomTooltip';
 import {
     CartesianGrid,
     Line,
@@ -49,24 +50,13 @@ export const Chart = <T, Z>({
                     tickFormatter={yAxisTickFormatter}
                 />
                 <Tooltip
-                    formatter={(value: string) =>
-                        formatTooltipValue(value, tooltipName)
+                    content={
+                        <CustomTooltip
+                            formatTooltipLabel={formatTooltipLabel}
+                            formatTooltipValue={formatTooltipValue}
+                            tooltipName={tooltipName}
+                        />
                     }
-                    labelFormatter={(_, payload) => {
-                        const { xAxis } = payload[0].payload as { xAxis: T };
-                        return formatTooltipLabel(xAxis);
-                    }}
-                    contentStyle={{
-                        borderRadius: 12,
-                        boxShadow: theme.shadows[1],
-                    }}
-                    itemStyle={{
-                        color: theme.palette.text.primary,
-                    }}
-                    labelStyle={{
-                        color: theme.palette.text.secondary,
-                        fontSize: theme.typography.pxToRem(12),
-                    }}
                 />
                 <Line
                     type="monotone"

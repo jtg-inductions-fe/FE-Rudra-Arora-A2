@@ -32,3 +32,4 @@ export type { SearchBarProps } from './SearchBar';
 export type { ChartProps } from './Chart';
 export type { InfoListProps } from './InfoList';
 export type { TableProps, ColumnType } from './Table';
+export type { CustomTooltipProps } from './CustomTooltip';

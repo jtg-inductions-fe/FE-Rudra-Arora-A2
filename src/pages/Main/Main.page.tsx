@@ -24,3 +24,5 @@ export const Main = () => (
         <Footer />
     </StyledStack>
 );
+
+export default Main;

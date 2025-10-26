@@ -59,3 +59,5 @@ export const Root = () => {
         </>
     );
 };
+
+export default Root;
