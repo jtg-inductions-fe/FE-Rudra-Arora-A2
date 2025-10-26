@@ -1,29 +1,15 @@
-import { Link } from 'react-router-dom';
+import { IconButton, Stack, useTheme } from '@mui/material';
 
-import {
-    IconButton,
-    Stack,
-    Typography,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+import { Typography } from '@components';
 
 import { footerConfig } from './Footer.config';
+import { FooterStack } from './Footer.styles';
 
 export const Footer = () => {
     const theme = useTheme();
-    const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
-        <Stack
-            sx={{
-                ...theme.mixins.BoxStyle(theme.typography.pxToRem(48)),
-                mb: theme.typography.pxToRem(2),
-            }}
-            gap={theme.spacing(8)}
-            flexDirection={isDesktop ? 'row' : 'column'}
-            justifyContent="space-between"
-        >
+        <FooterStack>
             <Typography variant="body1" color="text.secondary">
                 {footerConfig.description}
             </Typography>
@@ -32,17 +18,18 @@ export const Footer = () => {
                 {footerConfig.links.map((item, index) => (
                     <IconButton
                         aria-label={item.ariaLabel}
-                        component={Link}
-                        to={item.url}
-                        rel="noreferrer"
+                        component="a"
+                        href={item.url}
+                        rel="noreferrer noopener"
                         key={index}
+                        target="_blank"
                         sx={{ p: 0 }}
                         color="inherit"
                     >
-                        {<item.iconURL />}
+                        <item.iconURL />
                     </IconButton>
                 ))}
             </Stack>
-        </Stack>
+        </FooterStack>
     );
 };
