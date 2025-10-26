@@ -1,6 +1,6 @@
-import { Stack, styled } from '@mui/material';
+import { BoxProps, Stack, styled } from '@mui/material';
 
-export const FooterStack = styled(Stack)(({ theme }) => ({
+export const FooterStack = styled(Stack)<BoxProps>(({ theme }) => ({
     ...theme.mixins.SectionContainerStyles(theme.typography.pxToRem(48)),
     marginBottom: theme.spacing(1),
     gap: theme.spacing(8),

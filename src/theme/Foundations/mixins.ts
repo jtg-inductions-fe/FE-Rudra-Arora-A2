@@ -53,9 +53,19 @@ const SectionContainerStyles = (
     backgroundColor: backgroundColor,
 });
 
+const hideVerticalScrollbar = (): CSSProperties => ({
+    overflowY: 'auto',
+    scrollbarWidth: 'none',
+    msOverflowStyle: 'none',
+    '&::-webkit-scrollbar': {
+        display: 'none',
+    },
+});
+
 export const mixins: MixinsOptions = {
     lineClamp,
     flex,
     flexCenter,
     SectionContainerStyles,
+    hideVerticalScrollbar,
 };

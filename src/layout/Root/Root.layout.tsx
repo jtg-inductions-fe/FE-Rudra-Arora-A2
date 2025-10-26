@@ -52,7 +52,7 @@ export const Root = () => {
                     handleDrawerTransitionEnd={handleDrawerTransitionEnd}
                     mobileSidebarOpen={mobileSidebarOpen}
                 />
-                <StyledStack component="main">
+                <StyledStack component="section">
                     <Outlet />
                 </StyledStack>
             </Box>

@@ -4,10 +4,71 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Admin Dashboard</title>
+        <style>
+            .loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                opacity: 1;
+                transition: opacity 0.3s ease;
+                pointer-events: all;
+            }
+
+            .loader {
+                border: 15px solid #e5e7eb;
+                border-top: 15px solid #0e9f6e;
+                border-bottom: 15px solid #0e9f6e;
+                border-radius: 50%;
+                width: 10vw;
+                height: 10vw;
+                animation: spin 2s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .loader--hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+        </style>
     </head>
     <body>
+        <div
+            id="loader"
+            class="loader-wrapper"
+            role="status"
+            aria-live="polite"
+            aria-label="Loading"
+        >
+            <div class="loader"></div>
+        </div>
         <div id="root"></div>
         <noscript>Your browser does not support JavaScript!</noscript>
         <script type="module" src="/src/index.tsx"></script>
+        <script>
+            window.addEventListener('load', () => {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.classList.add('loader--hidden');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
+                }
+            });
+        </script>
     </body>
 </html>

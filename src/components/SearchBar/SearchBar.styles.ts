@@ -7,9 +7,11 @@ export const StyledSearchBar = styled(Autocomplete)(
             palette,
             spacing,
             shadows,
+            mixins,
         },
     }) => ({
-        width: pxToRem(402),
+        width: pxToRem(400),
+        ...mixins.hideVerticalScrollbar(),
         '& .MuiOutlinedInput-root': {
             border: `${pxToRem(1)} solid ${palette.divider}`,
             height: pxToRem(45),

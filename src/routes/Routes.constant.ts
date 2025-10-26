@@ -3,16 +3,15 @@ export const ROUTES = {
 
     NOTIFICATIONS: '/notifications',
     MESSAGES: '/messages',
-    OVERVIEW: '/overview',
     DOCS: '/docs',
     COMPONENTS: '/components',
     HELP: '/help',
-    PAGES: '/pages/url',
+    PAGES: '/pages',
 
     LOGIN: '/login',
     SIGN_UP: '/signup',
-    AUTH: '/auth/url',
-    SALES: '/sales/url',
+    AUTH: '/auth',
+    SALES: '/sales',
 
     PRODUCTS: '/products',
     PRODUCT_LIST: '/products/list',

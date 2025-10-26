@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import {
-    Box,
     Chip,
     Collapse,
     Divider,
@@ -23,7 +22,9 @@ export const Menu = ({ config }: MenuProps) => {
      * State for handling nested submenu
      */
     const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
+
     const theme = useTheme();
+    const location = useLocation();
 
     const handleClick = (key: string) => {
         setOpenKeys((prev) => {
@@ -47,6 +48,7 @@ export const Menu = ({ config }: MenuProps) => {
             const key = `${prefix} - ${index}`;
             const hasChildren = item.children?.length;
             const isOpen = openKeys.has(key);
+            const isActive = location.pathname === item.route;
 
             return (
                 <React.Fragment key={key}>
@@ -55,7 +57,14 @@ export const Menu = ({ config }: MenuProps) => {
                             component={hasChildren ? 'button' : Link}
                             {...(hasChildren
                                 ? { onClick: () => handleClick(key) }
-                                : { to: item.route })}
+                                : {
+                                      to: item.route,
+                                  })}
+                            sx={{
+                                color: isActive
+                                    ? theme.palette.primary.main
+                                    : theme.palette.common.black,
+                            }}
                         >
                             {item.icon && <item.icon />}
 
@@ -96,7 +105,7 @@ export const Menu = ({ config }: MenuProps) => {
     return (
         <List aria-label="nested-list-sidebar">
             {config.map((section, sectionIndex) => (
-                <Box key={sectionIndex}>
+                <React.Fragment key={sectionIndex}>
                     {sectionIndex > 0 && <Divider />}
                     {
                         <RecursiveMenuItems
@@ -104,7 +113,7 @@ export const Menu = ({ config }: MenuProps) => {
                             prefix={`s${sectionIndex}`}
                         />
                     }
-                </Box>
+                </React.Fragment>
             ))}
         </List>
     );

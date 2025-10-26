@@ -1,7 +1,6 @@
-import { Box, Stack, useTheme } from '@mui/material';
+import { Stack, useTheme } from '@mui/material';
 
-import TableSkeleton from '@assets/images/table-skeleton.webp';
-import { InfoList, Typography } from '@components';
+import { InfoList, InfoListSkeleton, Typography } from '@components';
 import { useProductsData } from '@hooks';
 
 import { getData } from './Products.helpers';
@@ -31,15 +30,7 @@ export const Products = () => {
                 Top products
             </Typography>
 
-            {isDataLoading && (
-                <Box
-                    component="img"
-                    alt="TableSkeleton"
-                    src={TableSkeleton}
-                    width="100%"
-                    height="100%"
-                />
-            )}
+            {isDataLoading && <InfoListSkeleton />}
 
             {!isDataLoading && isDataEmpty && (
                 <Stack sx={{ ...theme.mixins.flexCenter() }} height="100%">

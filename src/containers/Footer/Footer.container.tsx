@@ -9,8 +9,8 @@ export const Footer = () => {
     const theme = useTheme();
 
     return (
-        <FooterStack>
-            <Typography variant="body1" color="text.secondary">
+        <FooterStack component="footer">
+            <Typography component="h3" variant="body1" color="text.secondary">
                 {footerConfig.description}
             </Typography>
 

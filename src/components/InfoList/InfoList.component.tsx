@@ -1,11 +1,15 @@
-import { Avatar, List, ListItemText } from '@mui/material';
+import { Avatar, ListItemText } from '@mui/material';
 
-import { StyledListItem, StyledListItemAvatar } from './InfoList.styles';
+import {
+    StyledList,
+    StyledListItem,
+    StyledListItemAvatar,
+} from './InfoList.styles';
 import { InfoListProps } from './InfoList.types';
 import { Typography } from '../Typography';
 
 export const InfoList = ({ data, valueFormat }: InfoListProps) => (
-    <List disablePadding aria-label="Information list">
+    <StyledList disablePadding aria-label="Information list">
         {data.map((item, index) => (
             <StyledListItem key={index} aria-label={`Info item: ${item.label}`}>
                 {item.avatar && (
@@ -23,7 +27,7 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                     disableTypography
                     sx={{ margin: 0 }}
                     primary={
-                        <Typography variant="h4" linesToClamp={1} showTooltip>
+                        <Typography variant="h3" linesToClamp={1} showTooltip>
                             {item.label}
                         </Typography>
                     }
@@ -33,6 +37,7 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                             linesToClamp={1}
                             color="textSecondary"
                             showTooltip
+                            component="h4"
                         >
                             {item.caption}
                         </Typography>
@@ -40,7 +45,7 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                 />
 
                 <Typography
-                    variant="h4"
+                    variant="h3"
                     textAlign="right"
                     aria-label={`${item.label}: ${item.value}`}
                     showTooltip
@@ -50,5 +55,5 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                 </Typography>
             </StyledListItem>
         ))}
-    </List>
+    </StyledList>
 );

@@ -1,3 +1,9 @@
+export { ChartSkeleton } from './Chart';
+
+export { TableSkeleton } from './Table';
+
+export { InfoListSkeleton } from './ImageList';
+
 export { Typography } from './Typography';
 
 export { AvatarSkeleton } from './Avatar';

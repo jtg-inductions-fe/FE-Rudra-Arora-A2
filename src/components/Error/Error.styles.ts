@@ -1,13 +1,19 @@
 import { Box, styled } from '@mui/material';
 
+import { HeaderConstants } from '@containers';
+
 export const StyledBox = styled(Box)(
-    ({ theme: { mixins, spacing, typography } }) => ({
+    ({ theme: { mixins, spacing, typography, breakpoints } }) => ({
         ...mixins.flexCenter('column'),
-        height: '100vh',
         gap: spacing(4),
         textAlign: 'center',
         maxWidth: typography.pxToRem(1320),
         margin: 'auto',
+        height: `calc(90vh - ${typography.pxToRem(HeaderConstants.Header_Height_sm)})`,
+
+        [breakpoints.up('md')]: {
+            height: `calc(90vh - ${typography.pxToRem(HeaderConstants.Header_Height_lg)})`,
+        },
     }),
 );
 

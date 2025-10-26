@@ -16,5 +16,6 @@ export declare module '@mui/material/styles/createMixins' {
             boxShadow?: CSSProperties['boxShadow'],
             backgroundColor?: CSSProperties['backgroundColor'],
         ) => CSSProperties;
+        hideVerticalScrollbar: () => CSSProperties;
     }
 }

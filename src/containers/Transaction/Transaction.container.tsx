@@ -1,7 +1,6 @@
-import { Box, Stack, useTheme } from '@mui/material';
+import { Stack, useTheme } from '@mui/material';
 
-import TableSkeleton from '@assets/images/table-skeleton.webp';
-import { Table, Typography } from '@components';
+import { Table, TableSkeleton, Typography } from '@components';
 import { useTransactionData } from '@hooks';
 
 import { columnConfig } from './Transaction.config';
@@ -25,14 +24,7 @@ export const Transaction = () => {
                 </Typography>
             </Stack>
 
-            {isDataLoading && (
-                <Box
-                    component="img"
-                    src={TableSkeleton}
-                    width="100%"
-                    height="100%"
-                />
-            )}
+            {isDataLoading && <TableSkeleton />}
             {!isDataLoading && isDataEmpty && (
                 <Stack sx={{ ...theme.mixins.flexCenter() }} height="100%">
                     <Typography variant="h2" color="text.secondary">
