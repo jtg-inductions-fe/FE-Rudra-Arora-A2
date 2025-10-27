@@ -9,7 +9,7 @@ export const Footer = () => {
     const theme = useTheme();
 
     return (
-        <FooterStack component="footer">
+        <FooterStack component="footer" aria-label="Footer Section">
             <Typography variant="body1" color="text.secondary">
                 {footerConfig.description}
             </Typography>

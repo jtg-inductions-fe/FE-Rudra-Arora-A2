@@ -1,10 +1,9 @@
 import { ImageListItem, useMediaQuery, useTheme } from '@mui/material';
 
-import { ImageListConstants } from './ImageList.constants';
 import { StyledImageList } from './ImageList.styles';
 import { ImageListProps } from './ImageList.types';
 
-export const QuiltedImageList = ({ data }: ImageListProps) => {
+export const QuiltedImageList = ({ data, columnsNumber }: ImageListProps) => {
     const theme = useTheme();
 
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
@@ -12,7 +11,7 @@ export const QuiltedImageList = ({ data }: ImageListProps) => {
     return (
         <StyledImageList
             variant="quilted"
-            cols={ImageListConstants.COLUMNS_NUMBER}
+            cols={columnsNumber}
             rowHeight={!isDesktop ? 115 : 130}
             gap={isDesktop ? 40 : 20}
         >
@@ -22,12 +21,7 @@ export const QuiltedImageList = ({ data }: ImageListProps) => {
                     cols={!isDesktop ? item.cols_sm || 1 : item.cols_lg || 1}
                     rows={!isDesktop ? item.rows_sm || 1 : item.rows_lg || 1}
                 >
-                    <img
-                        rel="preload"
-                        src={item.img}
-                        alt={item.title}
-                        fetchPriority="high"
-                    />
+                    <img src={item.img} alt={item.title} loading="lazy" />
                 </ImageListItem>
             ))}
         </StyledImageList>

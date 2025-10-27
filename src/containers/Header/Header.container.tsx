@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import {
     Avatar,
@@ -16,15 +15,10 @@ import { AvatarComponent, AvatarSkeleton, SearchBar } from '@components';
 import { useProductsData, useUserData } from '@hooks';
 import { ROUTES } from '@routes';
 
-import {
-    HeaderBox,
-    StyledAppBar,
-    StyledIconButton,
-    ToolbarBox,
-} from './Header.style';
-import { HeaderProps } from './Header.types';
+import { HeaderBox, StyledAppBar, ToolbarBox } from './Header.style';
+import { Menu } from '../Menu';
 
-export const Header = ({ handleDrawerToggle }: HeaderProps) => {
+export const Header = () => {
     const navigate = useNavigate();
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
@@ -54,16 +48,7 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
                     sx={{ justifyContent: 'space-between', height: '100%' }}
                 >
                     {!isDesktop ? (
-                        <StyledIconButton
-                            aria-label="open drawer"
-                            edge="start"
-                            onClick={handleDrawerToggle}
-                            aria-controls="sidebar-drawer"
-                        >
-                            <MenuOpenIcon
-                                sx={{ fontSize: theme.typography.pxToRem(32) }}
-                            />
-                        </StyledIconButton>
+                        <Menu />
                     ) : (
                         <HeaderBox>
                             <IconButton

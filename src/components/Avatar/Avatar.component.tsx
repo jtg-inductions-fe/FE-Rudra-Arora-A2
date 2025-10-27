@@ -1,11 +1,11 @@
 import { MouseEvent, useState } from 'react';
 
-import { CustomModal } from 'components/Modal';
 import { useNavigate } from 'react-router-dom';
 
 import { Avatar as MuiAvatar, IconButton, useTheme } from '@mui/material';
 
 import { AvatarProps } from './Avatar.types';
+import { CustomModal } from '../Modal';
 
 export const AvatarComponent = ({
     data,

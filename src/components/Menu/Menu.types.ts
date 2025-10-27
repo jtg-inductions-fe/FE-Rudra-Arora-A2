@@ -18,7 +18,6 @@ export type MenuProps = {
 
 export type RecursiveMenuProps = {
     items: MenuProps['config'][number];
-    prefix: string;
 };
 
 export type StyledListItemButtonProps = ListItemButtonProps & {

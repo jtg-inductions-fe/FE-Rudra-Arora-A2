@@ -27,6 +27,7 @@ export const Sales = () => {
                 minHeight: theme.typography.pxToRem(500),
             }}
             component="section"
+            aria-label="Sales Section"
         >
             <Box sx={{ ...theme.mixins.flex('flex-start', 'center', '3px') }}>
                 <Typography variant="h2" linesToClamp={1}>

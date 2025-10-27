@@ -1,8 +1,9 @@
-import { useMediaQuery, useTheme } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import { QuiltedImageList } from '@components';
 
 import { heroConfig } from './Hero.config';
+import { HERO_CONSTANTS } from './hero.constants';
 
 export const Hero = () => {
     const theme = useTheme();
@@ -10,5 +11,12 @@ export const Hero = () => {
 
     const visibleItems = isDesktop ? heroConfig : heroConfig.slice(0, -1);
 
-    return <QuiltedImageList data={visibleItems} />;
+    return (
+        <Box component="section" aria-label="Hero Section">
+            <QuiltedImageList
+                data={visibleItems}
+                columnsNumber={HERO_CONSTANTS.COLUMNS_NUMBER}
+            />
+        </Box>
+    );
 };

@@ -1,6 +1,6 @@
-import { Stack, styled } from '@mui/material';
+import { BoxProps, Stack, styled } from '@mui/material';
 
-export const StyledStack = styled(Stack)(({ theme }) => ({
+export const StyledStack = styled(Stack)<BoxProps>(({ theme }) => ({
     ...theme.mixins.SectionContainerStyles(theme.typography.pxToRem(16)),
     maxHeight: theme.typography.pxToRem(450),
     flex: '3',

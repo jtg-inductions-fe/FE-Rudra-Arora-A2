@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, styled } from '@mui/material';
+import { AppBar, Box, styled } from '@mui/material';
 
 import { HeaderConstants } from './Header.constants';
 
@@ -31,13 +31,5 @@ export const ToolbarBox = styled(Box)(
         [breakpoints.up('md')]: {
             gap: spacing(3),
         },
-    }),
-);
-
-export const StyledIconButton = styled(IconButton)(
-    ({ theme: { palette, spacing } }) => ({
-        marginLeft: spacing(0),
-        marginTop: spacing(1),
-        color: palette.text.primary,
     }),
 );

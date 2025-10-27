@@ -19,4 +19,5 @@ export type ImageListProps = {
          */
         cols_lg?: number;
     }[];
+    columnsNumber: number;
 };
