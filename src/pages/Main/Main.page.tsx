@@ -9,11 +9,14 @@ import {
 
 import { CustomerProductStack, StyledStack } from './Main.styles';
 
-export const Main = () => (
-    <StyledStack>
+const Main = () => (
+    <StyledStack component="div" aria-label="Main section wrapper">
         <Hero />
         <Sales />
-        <CustomerProductStack>
+        <CustomerProductStack
+            component="section"
+            aria-label="Customer product section"
+        >
             <Customer />
             <Products />
         </CustomerProductStack>
@@ -21,3 +24,5 @@ export const Main = () => (
         <Footer />
     </StyledStack>
 );
+
+export default Main;

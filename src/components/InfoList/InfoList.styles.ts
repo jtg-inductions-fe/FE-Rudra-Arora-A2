@@ -1,4 +1,4 @@
-import { ListItem, ListItemAvatar, styled } from '@mui/material';
+import { List, ListItem, ListItemAvatar, styled } from '@mui/material';
 
 export const StyledListItem = styled(ListItem)(({ theme }) => ({
     display: 'flex',
@@ -12,4 +12,9 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
 
 export const StyledListItemAvatar = styled(ListItemAvatar)(({ theme }) => ({
     minWidth: theme.typography.pxToRem(32),
+}));
+
+export const StyledList = styled(List)(({ theme }) => ({
+    maxHeight: theme.typography.pxToRem(360),
+    ...theme.mixins.hideVerticalScrollbar(),
 }));

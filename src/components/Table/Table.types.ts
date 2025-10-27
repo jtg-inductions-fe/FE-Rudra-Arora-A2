@@ -20,3 +20,8 @@ export type TableProps<T extends object> = {
     data: T[];
     columns: ColumnType<T>[];
 };
+
+export type TableSkeletonProps = {
+    rows?: number;
+    columns?: number;
+};

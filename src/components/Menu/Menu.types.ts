@@ -13,6 +13,7 @@ export type MenuItemType = {
 
 export type MenuProps = {
     config: MenuItemType[][];
+    handleDrawerClose: () => void;
 };
 
 export type RecursiveMenuProps = {

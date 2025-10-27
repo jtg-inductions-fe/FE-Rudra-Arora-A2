@@ -9,5 +9,6 @@ export const StyledStack = styled(Stack)(({ theme }) => ({
 
     [theme.breakpoints.up('md')]: {
         ...theme.mixins.SectionContainerStyles(theme.typography.pxToRem(24)),
+        width: theme.typography.pxToRem(730),
     },
 }));

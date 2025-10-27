@@ -1,8 +1,7 @@
 import InfoIcon from '@mui/icons-material/Info';
 import { Box, Stack, Tooltip, useTheme } from '@mui/material';
 
-import skeleton from '@assets/images/skeleton_chart.webp';
-import { Chart, Typography } from '@components';
+import { Chart, ChartSkeleton, Typography } from '@components';
 import { useSalesData } from '@hooks';
 
 import {
@@ -15,14 +14,19 @@ import {
 
 export const Sales = () => {
     const theme = useTheme();
-    const salesData = getData(useSalesData().data);
+    const salesResponse = useSalesData();
+    const salesData = getData(salesResponse.data) ?? [];
+    const isDataLoading = salesResponse.loading;
+    const isDataEmpty = !isDataLoading && salesData.length === 0;
 
     return (
         <Stack
             sx={{
                 ...theme.mixins.SectionContainerStyles(8),
                 gap: theme.spacing(7),
+                minHeight: theme.typography.pxToRem(500),
             }}
+            component="section"
         >
             <Box sx={{ ...theme.mixins.flex('flex-start', 'center', '3px') }}>
                 <Typography variant="h2" linesToClamp={1}>
@@ -32,7 +36,15 @@ export const Sales = () => {
                     <InfoIcon color="action" />
                 </Tooltip>
             </Box>
-            {salesData ? (
+            {isDataLoading && <ChartSkeleton />}
+            {!isDataLoading && isDataEmpty && (
+                <Stack sx={{ ...theme.mixins.flexCenter() }} height="100%">
+                    <Typography variant="h2" color="text.secondary">
+                        No Sales data available
+                    </Typography>
+                </Stack>
+            )}
+            {!isDataEmpty && !isDataLoading && (
                 <Chart
                     data={salesData}
                     tooltipName="Sales"
@@ -41,8 +53,6 @@ export const Sales = () => {
                     formatTooltipLabel={formatTooltipLabel}
                     formatTooltipValue={formatTooltipValue}
                 />
-            ) : (
-                <Box component="img" src={skeleton} />
             )}
         </Stack>
     );

@@ -1,4 +1,10 @@
-import { styled, TableCell, tableCellClasses, TableRow } from '@mui/material';
+import {
+    styled,
+    TableCell,
+    tableCellClasses,
+    TableContainer,
+    TableRow,
+} from '@mui/material';
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -14,4 +20,12 @@ export const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:last-child td, &:last-child th': {
         border: 0,
     },
+}));
+
+export const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+    borderRadius: theme.typography.pxToRem(12),
+    width: '100%',
+    overflowX: 'auto',
+    maxHeight: theme.typography.pxToRem(500),
+    ...theme.mixins.hideVerticalScrollbar(),
 }));

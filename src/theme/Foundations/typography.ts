@@ -42,7 +42,7 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
         },
     },
 
-    h3: {
+    h4: {
         fontSize: typographyUtil.pxToRem(16),
         fontWeight: 500,
         lineHeight: typographyUtil.pxToRem(24),
@@ -54,7 +54,7 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
         lineHeight: typographyUtil.pxToRem(30),
     },
 
-    h4: {
+    h3: {
         fontSize: typographyUtil.pxToRem(16),
         lineHeight: typographyUtil.pxToRem(24),
         fontWeight: 600,

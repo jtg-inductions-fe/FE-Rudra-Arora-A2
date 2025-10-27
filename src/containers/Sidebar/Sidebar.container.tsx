@@ -22,8 +22,15 @@ export const Sidebar = ({
 
     const drawer = (
         <SidebarStack justifyContent="space-between">
-            <Box sx={{ overflowY: 'auto' }}>
-                <Menu config={sidebarConfig.navHeader} />
+            <Box
+                sx={{
+                    ...theme.mixins.hideVerticalScrollbar(),
+                }}
+            >
+                <Menu
+                    handleDrawerClose={handleDrawerClose}
+                    config={sidebarConfig.navHeader}
+                />
             </Box>
             <Stack
                 flexDirection="row"

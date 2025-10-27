@@ -47,11 +47,13 @@ export const Root = () => {
         <>
             <Header handleDrawerToggle={handleDrawerToggle} />
             <Box display="flex" width="100%">
-                <Sidebar
-                    handleDrawerClose={handleDrawerClose}
-                    handleDrawerTransitionEnd={handleDrawerTransitionEnd}
-                    mobileSidebarOpen={mobileSidebarOpen}
-                />
+                <Box component="aside">
+                    <Sidebar
+                        handleDrawerClose={handleDrawerClose}
+                        handleDrawerTransitionEnd={handleDrawerTransitionEnd}
+                        mobileSidebarOpen={mobileSidebarOpen}
+                    />
+                </Box>
                 <StyledStack component="main">
                     <Outlet />
                 </StyledStack>

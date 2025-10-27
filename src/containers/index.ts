@@ -1,3 +1,5 @@
+export { HeaderConstants } from './Header';
+
 export { Footer } from './Footer';
 
 export { Transaction } from './Transaction';

@@ -21,7 +21,3 @@
 #### Screenshots (if applicable)
 
 - Add screenshots if applicable
-
-#### Deployment Link
-
-- Add Deployment Link

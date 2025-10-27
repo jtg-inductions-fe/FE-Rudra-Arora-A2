@@ -22,22 +22,18 @@ export const sidebarConfig: {
             {
                 title: 'Overview',
                 icon: PieChartIcon,
-                route: ROUTES.OVERVIEW,
+                route: ROUTES.ROOT,
             },
             {
                 title: 'Pages',
                 icon: ContactPageIcon,
                 children: [
-                    {
-                        title: 'Overview',
-                        route: ROUTES.PAGES,
-                    },
-                    { title: 'Docs', route: ROUTES.PAGES },
+                    { title: 'Docs', route: `${ROUTES.PAGES}${ROUTES.DOCS}` },
                     {
                         title: 'Components',
-                        route: ROUTES.PAGES,
+                        route: `${ROUTES.PAGES}${ROUTES.COMPONENTS}`,
                     },
-                    { title: 'Help', route: ROUTES.PAGES },
+                    { title: 'Help', route: `${ROUTES.PAGES}${ROUTES.HELP}` },
                 ],
             },
             {
@@ -46,15 +42,15 @@ export const sidebarConfig: {
                 children: [
                     {
                         title: 'Product List',
-                        route: ROUTES.SALES,
+                        route: `${ROUTES.SALES}${ROUTES.PRODUCT_LIST}`,
                     },
                     {
                         title: 'Billing',
-                        route: ROUTES.SALES,
+                        route: `${ROUTES.SALES}${ROUTES.BILLING}`,
                     },
                     {
                         title: 'Invoice',
-                        route: ROUTES.SALES,
+                        route: `${ROUTES.SALES}${ROUTES.INVOICE}`,
                     },
                 ],
             },
@@ -68,10 +64,10 @@ export const sidebarConfig: {
                 title: 'Authentication',
                 icon: LockIcon,
                 children: [
-                    { title: 'Login', route: ROUTES.AUTH },
+                    { title: 'Login', route: `${ROUTES.AUTH}${ROUTES.LOGIN}` },
                     {
                         title: 'Sign Up',
-                        route: ROUTES.AUTH,
+                        route: `${ROUTES.AUTH}${ROUTES.SIGN_UP}`,
                     },
                 ],
             },
