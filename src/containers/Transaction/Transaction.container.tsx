@@ -16,7 +16,7 @@ export const Transaction = () => {
     const isDataEmpty = !isDataLoading && TransactionData.length === 0;
 
     return (
-        <TransactionStack component="section">
+        <TransactionStack component="section" aria-label="Transaction Section">
             <Stack pb={4}>
                 <Typography variant="h2">Transactions</Typography>
                 <Typography variant="body2" color="info.light">

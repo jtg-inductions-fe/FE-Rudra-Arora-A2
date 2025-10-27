@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Box, IconButton, Stack, useMediaQuery, useTheme } from '@mui/material';
 
 import { Menu } from '@components';
+import { useRootContext } from '@hooks';
 
 import { sidebarConfig } from './Sidebar.config';
 import {
@@ -10,13 +11,11 @@ import {
     SidebarStack,
     TemporaryDrawer,
 } from './Sidebar.styles';
-import { SidebarProps } from './Sidebar.types';
 
-export const Sidebar = ({
-    handleDrawerClose,
-    handleDrawerTransitionEnd,
-    mobileSidebarOpen,
-}: SidebarProps) => {
+export const Sidebar = () => {
+    const { handleDrawerClose, handleDrawerTransitionEnd, mobileSidebarOpen } =
+        useRootContext();
+
     const theme = useTheme();
     const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -55,12 +54,13 @@ export const Sidebar = ({
     );
 
     return (
-        <Box component="nav" aria-label="primary navigation">
+        <Box component="aside" aria-label="primary navigation">
             {isDesktop ? (
                 <PermanentDrawer
                     variant="permanent"
                     PaperProps={{ id: 'sidebar-drawer' }}
                     open
+                    component="nav"
                 >
                     {drawer}
                 </PermanentDrawer>
@@ -72,6 +72,7 @@ export const Sidebar = ({
                     onClose={handleDrawerClose}
                     ModalProps={{ keepMounted: true }}
                     PaperProps={{ id: 'sidebar-drawer' }}
+                    component="nav"
                 >
                     {drawer}
                 </TemporaryDrawer>

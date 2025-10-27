@@ -24,7 +24,7 @@ export const Products = () => {
     const isDataEmpty = !isDataLoading && ProductsData.length === 0;
 
     return (
-        <StyledStack>
+        <StyledStack component="section" aria-label="Products Section">
             <Typography variant="h2" linesToClamp={1}>
                 Top products
             </Typography>

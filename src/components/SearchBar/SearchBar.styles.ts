@@ -5,23 +5,18 @@ export const StyledSearchBar = styled(Autocomplete)(
         theme: {
             typography: { pxToRem },
             palette,
-            spacing,
             shadows,
             mixins,
         },
     }) => ({
         width: pxToRem(400),
         ...mixins.hideVerticalScrollbar(),
+        borderRadius: pxToRem(16),
+        boxShadow: shadows[6],
         '& .MuiOutlinedInput-root': {
-            border: `${pxToRem(1)} solid ${palette.divider}`,
             height: pxToRem(45),
             borderRadius: pxToRem(16),
             backgroundColor: palette.background.default,
-            boxShadow: shadows[1],
-            paddingRight: spacing(1),
-        },
-        '& input': {
-            paddingLeft: spacing(1),
         },
     }),
 );

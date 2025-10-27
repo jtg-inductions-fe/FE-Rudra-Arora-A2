@@ -1,3 +1,4 @@
+export { useRootContext } from './useRootContext';
 export { useSalesData } from './useSalesData';
 export { useUserData } from './useUserData';
 export { useProductsData } from './useProductsData';

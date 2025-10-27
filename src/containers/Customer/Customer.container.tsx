@@ -17,7 +17,7 @@ export const Customer = () => {
     const isDataEmpty = !isDataLoading && CustomersData.length === 0;
 
     return (
-        <StyledStack>
+        <StyledStack component="section" aria-label="Customer Section">
             <Typography variant="h2" linesToClamp={1}>
                 Latest Customers
             </Typography>

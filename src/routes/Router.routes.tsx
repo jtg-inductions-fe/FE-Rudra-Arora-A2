@@ -8,7 +8,7 @@ import { ErrorPage, NotFound } from '@pages';
 
 import { ROUTES } from './Routes.constant';
 
-const Main = lazy(() => import('../pages/Main/Main.page'));
+const Main = lazy(() => import('@pages/Main'));
 
 export const router = createBrowserRouter([
     {

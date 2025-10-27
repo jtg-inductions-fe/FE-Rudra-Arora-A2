@@ -16,9 +16,7 @@ export const ErrorDisplay = ({
     <StyledBox component="section">
         <StyledImage src={image} alt={title} />
 
-        <Typography variant="h1" linesToClamp={1}>
-            {title}
-        </Typography>
+        <Typography variant="h1">{title}</Typography>
 
         <Typography variant="body1" color="textSecondary">
             {body}
