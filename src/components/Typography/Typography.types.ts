@@ -1,16 +1,6 @@
 import { TypographyProps } from '@mui/material';
 
-export type CustomTypographyProps = Pick<
-    TypographyProps,
-    | 'variant'
-    | 'color'
-    | 'textAlign'
-    | 'component'
-    | 'children'
-    | 'noWrap'
-    | 'flexShrink'
-    | 'marginLeft'
-> & {
+export type CustomTypographyProps = {
     showTooltip?: boolean;
     linesToClamp?: number;
-};
+} & TypographyProps;

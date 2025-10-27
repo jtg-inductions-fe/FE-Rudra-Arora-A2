@@ -17,7 +17,7 @@ export const StyledSearchBar = styled(Autocomplete)(
             height: pxToRem(45),
             borderRadius: pxToRem(16),
             backgroundColor: palette.background.default,
-            boxShadow: shadows[5],
+            boxShadow: shadows[1],
             paddingRight: spacing(1),
         },
         '& input': {
