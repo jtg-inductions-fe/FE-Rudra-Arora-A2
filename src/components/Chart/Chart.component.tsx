@@ -1,4 +1,3 @@
-import { CustomTooltip } from 'components/CustomTooltip';
 import {
     CartesianGrid,
     Line,
@@ -12,6 +11,7 @@ import {
 import { useMediaQuery, useTheme } from '@mui/material';
 
 import { ChartProps } from './Chart.types';
+import { CustomTooltip } from '../CustomTooltip';
 
 export const Chart = <T, Z>({
     data,
@@ -40,6 +40,10 @@ export const Chart = <T, Z>({
                     angle={isLargeScreen ? 0 : -40}
                     dy={20}
                     minTickGap={20}
+                    tick={{
+                        fontSize: isLargeScreen ? 14 : 12,
+                        fontWeight: isLargeScreen ? 600 : 400,
+                    }}
                     tickFormatter={xAxisTickFormatter}
                 />
                 <YAxis

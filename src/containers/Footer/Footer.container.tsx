@@ -10,7 +10,7 @@ export const Footer = () => {
 
     return (
         <FooterStack component="footer">
-            <Typography component="h3" variant="body1" color="text.secondary">
+            <Typography variant="body1" color="text.secondary">
                 {footerConfig.description}
             </Typography>
 

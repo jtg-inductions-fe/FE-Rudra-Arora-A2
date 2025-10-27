@@ -47,17 +47,17 @@ export const Root = () => {
         <>
             <Header handleDrawerToggle={handleDrawerToggle} />
             <Box display="flex" width="100%">
-                <Sidebar
-                    handleDrawerClose={handleDrawerClose}
-                    handleDrawerTransitionEnd={handleDrawerTransitionEnd}
-                    mobileSidebarOpen={mobileSidebarOpen}
-                />
-                <StyledStack component="section">
+                <Box component="aside">
+                    <Sidebar
+                        handleDrawerClose={handleDrawerClose}
+                        handleDrawerTransitionEnd={handleDrawerTransitionEnd}
+                        mobileSidebarOpen={mobileSidebarOpen}
+                    />
+                </Box>
+                <StyledStack component="main">
                     <Outlet />
                 </StyledStack>
             </Box>
         </>
     );
 };
-
-export default Root;

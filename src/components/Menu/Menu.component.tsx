@@ -17,7 +17,7 @@ import {
 import { StyledListItemButton } from './Menu.styles';
 import { MenuProps, RecursiveMenuProps } from './Menu.types';
 
-export const Menu = ({ config }: MenuProps) => {
+export const Menu = ({ config, handleDrawerClose }: MenuProps) => {
     /**
      * State for handling nested submenu
      */
@@ -59,6 +59,7 @@ export const Menu = ({ config }: MenuProps) => {
                                 ? { onClick: () => handleClick(key) }
                                 : {
                                       to: item.route,
+                                      onClick: () => handleDrawerClose(),
                                   })}
                             sx={{
                                 color: isActive

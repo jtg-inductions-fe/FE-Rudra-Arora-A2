@@ -1,8 +1,8 @@
-import { Box, styled } from '@mui/material';
+import { Box, BoxProps, styled } from '@mui/material';
 
 import { HeaderConstants } from '@containers';
 
-export const StyledBox = styled(Box)(
+export const StyledBox = styled(Box)<BoxProps>(
     ({ theme: { mixins, spacing, typography, breakpoints } }) => ({
         ...mixins.flexCenter('column'),
         gap: spacing(4),

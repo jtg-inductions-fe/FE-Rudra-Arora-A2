@@ -9,8 +9,8 @@ import {
 
 import { CustomerProductStack, StyledStack } from './Main.styles';
 
-export const Main = () => (
-    <StyledStack component="main">
+const Main = () => (
+    <StyledStack component="div" aria-label="Main section wrapper">
         <Hero />
         <Sales />
         <CustomerProductStack

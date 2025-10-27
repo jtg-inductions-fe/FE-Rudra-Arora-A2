@@ -1,6 +1,8 @@
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 
+import { StyledBox } from './CustomTooltip.styles';
 import { CustomTooltipProps } from './CustomTooltip.types';
+import { Typography } from '../Typography';
 
 export const CustomTooltip = <T,>({
     active,
@@ -22,20 +24,11 @@ export const CustomTooltip = <T,>({
     );
 
     return (
-        <Box
-            sx={{
-                backgroundColor: theme.palette.background.paper,
-                borderRadius: theme.typography.pxToRem(10),
-                boxShadow: theme.shadows[1],
-                p: theme.spacing(2, 6, 8, 3),
-            }}
-        >
+        <StyledBox>
             <Typography
-                variant="body2"
-                sx={{
-                    color: theme.palette.text.secondary,
-                    fontSize: theme.typography.pxToRem(12),
-                }}
+                variant="subtitle2"
+                component="p"
+                color={theme.palette.text.secondary}
             >
                 {formattedDate}
             </Typography>
@@ -51,22 +44,18 @@ export const CustomTooltip = <T,>({
                 />
                 <Typography
                     variant="body2"
-                    sx={{
-                        color: theme.palette.text.secondary,
-                    }}
+                    color={theme.palette.text.secondary}
                 >
-                    {label}:{' '}
+                    {label}:
                     <Typography
                         component="span"
-                        sx={{
-                            color: theme.palette.text.primary,
-                            fontWeight: 600,
-                        }}
+                        variant="h3"
+                        color={theme.palette.text.primary}
                     >
                         {formattedValue}
                     </Typography>
                 </Typography>
             </Box>
-        </Box>
+        </StyledBox>
     );
 };

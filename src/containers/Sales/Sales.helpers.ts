@@ -24,7 +24,7 @@ export const formatTooltipLabel = (xAxisData: Date): string => {
 export const formatTooltipValue = (
     value: string,
     tooltipName: string,
-): string[] => [`$${(Number(value) / 1000).toFixed(0)}k`, tooltipName];
+): string[] => [` $${(Number(value) / 1000).toFixed(0)}k`, tooltipName];
 
 /**
  * Function to shape data in desired form

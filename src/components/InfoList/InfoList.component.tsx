@@ -27,7 +27,12 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                     disableTypography
                     sx={{ margin: 0 }}
                     primary={
-                        <Typography variant="h3" linesToClamp={1} showTooltip>
+                        <Typography
+                            variant="h3"
+                            component="p"
+                            linesToClamp={1}
+                            showTooltip
+                        >
                             {item.label}
                         </Typography>
                     }
@@ -37,7 +42,7 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                             linesToClamp={1}
                             color="textSecondary"
                             showTooltip
-                            component="h4"
+                            component="p"
                         >
                             {item.caption}
                         </Typography>
@@ -50,6 +55,8 @@ export const InfoList = ({ data, valueFormat }: InfoListProps) => (
                     aria-label={`${item.label}: ${item.value}`}
                     showTooltip
                     linesToClamp={1}
+                    flexShrink={0}
+                    component="p"
                 >
                     {valueFormat(item.value)}
                 </Typography>

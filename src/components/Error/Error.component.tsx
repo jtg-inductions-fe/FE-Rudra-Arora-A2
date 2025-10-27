@@ -13,7 +13,7 @@ export const ErrorDisplay = ({
     buttonText,
     to,
 }: ErrorDisplayProps) => (
-    <StyledBox>
+    <StyledBox component="section">
         <StyledImage src={image} alt={title} />
 
         <Typography variant="h1" linesToClamp={1}>

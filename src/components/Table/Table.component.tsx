@@ -38,7 +38,7 @@ export const Table = <T extends object>({ data, columns }: TableProps<T>) => {
                                         : `${100 / columns.length}%`
                                 }
                             >
-                                <Typography variant="subtitle1" component="h3">
+                                <Typography variant="subtitle1" component="div">
                                     {col.label}
                                 </Typography>
                             </StyledTableCell>

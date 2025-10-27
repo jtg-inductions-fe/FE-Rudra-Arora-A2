@@ -3,24 +3,20 @@ import { Tooltip, Typography as MuiTypography, useTheme } from '@mui/material';
 import { CustomTypographyProps } from './Typography.types';
 
 export const Typography = ({
-    color,
-    variant,
     linesToClamp,
-    textAlign,
     component,
     children,
     showTooltip = false,
     noWrap = false,
+    ...rest
 }: CustomTypographyProps) => {
     const theme = useTheme();
 
     const typographyElement = (
         <MuiTypography
+            {...rest}
             {...(component && { component })}
             sx={{ ...(linesToClamp && theme.mixins.lineClamp(linesToClamp)) }}
-            variant={variant}
-            color={color}
-            textAlign={textAlign}
             noWrap={noWrap}
         >
             {children}

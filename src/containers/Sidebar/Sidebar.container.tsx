@@ -27,7 +27,10 @@ export const Sidebar = ({
                     ...theme.mixins.hideVerticalScrollbar(),
                 }}
             >
-                <Menu config={sidebarConfig.navHeader} />
+                <Menu
+                    handleDrawerClose={handleDrawerClose}
+                    config={sidebarConfig.navHeader}
+                />
             </Box>
             <Stack
                 flexDirection="row"

@@ -14,8 +14,7 @@ export const Products = () => {
     const valueFormat = (value: number) => (
         <>
             {value}
-            <Typography component="span" color="text.disabled">
-                {' '}
+            <Typography marginLeft={1} component="span" color="text.disabled">
                 sales
             </Typography>
         </>

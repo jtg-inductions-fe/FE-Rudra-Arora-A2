@@ -10,9 +10,14 @@ import {
     useTheme,
 } from '@mui/material';
 
-export const TableSkeleton = () => {
-    const rows = Array.from({ length: 6 });
-    const columns = Array.from({ length: 4 });
+import { TableSkeletonProps } from './Table.types';
+
+export const TableSkeleton = ({
+    columns = 4,
+    rows = 6,
+}: TableSkeletonProps) => {
+    const skeletonRows = Array.from({ length: rows });
+    const skeletonColumns = Array.from({ length: columns });
     const theme = useTheme();
 
     return (
@@ -25,7 +30,7 @@ export const TableSkeleton = () => {
                             borderColor: 'divider',
                         }}
                     >
-                        {columns.map((_, colIndex) => (
+                        {skeletonColumns.map((_, colIndex) => (
                             <TableCell key={colIndex}>
                                 <Skeleton
                                     variant="text"
@@ -39,9 +44,9 @@ export const TableSkeleton = () => {
                 </TableHead>
 
                 <TableBody>
-                    {rows.map((_row, rowIndex) => (
+                    {skeletonRows.map((_row, rowIndex) => (
                         <TableRow key={rowIndex}>
-                            {columns.map((_col, colIndex) => (
+                            {skeletonColumns.map((_col, colIndex) => (
                                 <TableCell key={colIndex}>
                                     <Box
                                         sx={{ ...theme.mixins.flex() }}
