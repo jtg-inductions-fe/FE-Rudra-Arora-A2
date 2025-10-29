@@ -21,7 +21,7 @@ export const QuiltedImageList = ({ data, columnsNumber }: ImageListProps) => {
                     cols={!isDesktop ? item.cols_sm || 1 : item.cols_lg || 1}
                     rows={!isDesktop ? item.rows_sm || 1 : item.rows_lg || 1}
                 >
-                    <img src={item.img} alt={item.title} loading="lazy" />
+                    <img src={item.img} alt={item.title} />
                 </ImageListItem>
             ))}
         </StyledImageList>
