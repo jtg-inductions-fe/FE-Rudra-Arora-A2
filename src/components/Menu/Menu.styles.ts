@@ -10,7 +10,4 @@ export const StyledListItemButton = styled(
     margin: theme.spacing(2, 2, 2, 5),
     gap: theme.spacing(4),
     width: '90%',
-    '&:hover': {
-        color: theme.palette.primary.main,
-    },
 }));
